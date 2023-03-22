@@ -37,11 +37,12 @@ export const login = async (req, res) => {
     }
 
     const isAuthed = bcrypt.compareSync(userData.password, data[0].password);
-    const isAdmin = "admin";
-
+    const isAdmin = () => {
+      return userData.username === "admin";
+    };
     const userPayload = { id: data[0].id };
 
-    if (isAuthed && isAdmin === userData.username) {
+    if (isAuthed && isAdmin) {
       const token = jwt.sign(userPayload, jwtSecretAdmin, { expiresIn });
 
       return res.send({ message: "Hack on admin :D", token }).end();
