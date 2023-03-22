@@ -104,7 +104,7 @@ export const updateUser = async (req, res) => {
 
     // await con.end();
 
-    res.status(202).send("User was deleted").end();
+    // res.status(202).send("User was deleted").end();
 
     try {
       newUser = await newUserSchema.validateAsync(newUser);
