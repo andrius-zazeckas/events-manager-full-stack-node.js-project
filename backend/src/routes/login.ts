@@ -40,6 +40,7 @@ export const login = async (req, res) => {
     const isAdmin = () => {
       return userData.username === "admin";
     };
+
     const userPayload = { id: data[0].id };
 
     if (isAuthed && isAdmin) {
