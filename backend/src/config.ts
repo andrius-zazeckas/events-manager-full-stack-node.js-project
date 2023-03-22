@@ -13,5 +13,6 @@ export const MYSQL_CONFIG = {
 };
 
 export const jwtSecret = process.env.jwtSecret;
+export const jwtSecretAdmin = process.env.jwtSecretAdmin;
 
 export const expiresIn = +process.env.expiresIn;

@@ -11,7 +11,7 @@ const newUserSchema = Joi.object({
   date_of_birth: Joi.date(),
 });
 
-export const register = async (req, res) => {
+export const addUser = async (req, res) => {
   let newUserData = req.body;
 
   try {
