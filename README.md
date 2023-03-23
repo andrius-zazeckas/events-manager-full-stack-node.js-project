@@ -2,47 +2,41 @@
 
 ## Baigiamasis projektas
 
-Šios projekto metu reikės sukurti programą naudojant React, NodeJS Express ir MongoDB arba MySQL. Programos tikslas - leisti renginių organizavimu užsiimančiai įmonei, registruoti telefonu paskambinusius asmenis į renginį. 
+Šio projekto metu reikės sukurti programą naudojant React, NodeJS Express ir MongoDB arba MySQL. Programos tikslas - leisti renginių organizavimu užsiimančiai įmonei, registruoti telefonu paskambinusius asmenis į renginį.
 
+Renginių organizatorius, prisijungęs prie programos, matys:
 
-Renginių organizatorius, prisijungęs prie programos, matys: 
- * Registracijos formą, kurioje: 
+- Registracijos formą, kurioje:
 
-   * vardas ir pavardė;
+  - vardas ir pavardė;
 
-   * renginys (vienas iš pasirinkimų, o ne textarea);
+  - renginys (vienas iš pasirinkimų, o ne textarea);
 
-   * el.paštas;
+  - el.paštas;
 
-   * amžius;
+  - amžius;
 
-   * gimimo data.
+  - gimimo data.
 
- * Renginių sąrašą bei paspaudęs ant renginio pamatys registruotų vartotojų sąrašą.
+- Renginių sąrašą bei paspaudęs ant renginio pamatys registruotų vartotojų sąrašą.
 
- * Bendrą užsiregistravusių vartotojų sąrašą (nurodoma lentelė su vartotojo vardu ir pavarde, el. paštu, gimimo data, renginio pavadinimu, administravimo mygtukais).
+- Bendrą užsiregistravusių vartotojų sąrašą (nurodoma lentelė su vartotojo vardu ir pavarde, el. paštu, gimimo data, renginio pavadinimu, administravimo mygtukais).
 
-
- * Galimybę atsijungti - šiems atvejams atskiri endpointai ir vaizdai (angl. routes/endpoints bei views).
+- Galimybę atsijungti - šiems atvejams atskiri endpointai ir vaizdai (angl. routes/endpoints bei views).
 
 ## Funkcionalumas:
 
-  a. CRUD operacijos (pvz.: registracijos formoje galima sukurti vartotoją, lentelėje matyti, atnaujinti ir ištrinti vartotojus);
+a. CRUD operacijos (pvz.: registracijos formoje galima sukurti vartotoją, lentelėje matyti, atnaujinti ir ištrinti vartotojus);
 
-  b. Duomenų saugojimas (vartotojai saugomi duomenų bazėje). Jeigu naudojate MySQL duomenų bazę būtina sukurti sąryšius tarp lentelių ir naudoti "Primary Key" apribojimus.
+b. Duomenų saugojimas (vartotojai saugomi duomenų bazėje). Jeigu naudojate MySQL duomenų bazę būtina sukurti sąryšius tarp lentelių ir naudoti "Primary Key" apribojimus.
 
-  c. Saugus duomenų talpinimas bei prisijungimas.
+c. Saugus duomenų talpinimas bei prisijungimas.
 
-  d. Dizainas, kurį sukursite patys. Rekomenduotina naudoti Material UI bei Material Design, tačiau leistini ir kiti sprendimai.
+d. Dizainas, kurį sukursite patys. Rekomenduotina naudoti Material UI bei Material Design, tačiau leistini ir kiti sprendimai.
 
-  e. Stabilumas. Rekomenduotina naudoti Jest arba react-testing-library bei TypeScript.
-
-
-
+e. Stabilumas. Rekomenduotina naudoti Jest arba react-testing-library bei TypeScript.
 
 #### Papildomas akcentas semantikai bei prieinamumui (angl. accessibility).
-
-
 
 Užduoties įkėlimo instrukcijos
 

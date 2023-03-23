@@ -37,9 +37,7 @@ export const login = async (req, res) => {
     }
 
     const isAuthed = bcrypt.compareSync(userData.password, data[0].password);
-    const isAdmin = () => {
-      return userData.username === "admin";
-    };
+    const isAdmin = userData.username === "admin";
 
     const userPayload = { id: data[0].id };
 

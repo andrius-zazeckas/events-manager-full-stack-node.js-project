@@ -35,7 +35,8 @@ export const addUser = async (req, res) => {
     if (error.message.includes("Duplicate entry")) {
       return res
         .status(400)
-        .send({ error: `Username - ${newUser.username} Already in use` });
+        .send({ error: `Username - ${newUser.username} Already in use` })
+        .end();
     }
 
     return res.status(500).send({ error: error.message });
@@ -127,7 +128,8 @@ export const updateUser = async (req, res) => {
     if (error.message.includes("Duplicate entry")) {
       return res
         .status(400)
-        .send({ error: `Username - ${newUser.username} Already in use` });
+        .send({ error: `Username - ${newUser.username} Already in use` })
+        .end();
     }
 
     return res.status(500).send({ error: error.message });
