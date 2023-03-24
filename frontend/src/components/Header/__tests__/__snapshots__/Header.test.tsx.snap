@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header matches snapshot 1`] = `
+<header
+  className="MuiBox-root css-17mas4t"
+>
+  <h3
+    className="MuiTypography-root MuiTypography-h3 css-93metl-MuiTypography-root"
+  >
+    PRODUCTS
+  </h3>
+  <div
+    className="MuiGrid-root MuiGrid-container css-16gs291-MuiGrid-root"
+    role="navigation"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 css-1b3l6lk-MuiGrid-root"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <p
+          aria-label="home link"
+          className="MuiTypography-root MuiTypography-body1 css-fldieq-MuiTypography-root"
+        >
+          Home
+        </p>
+      </a>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 css-1b3l6lk-MuiGrid-root"
+    >
+      <a
+        aria-label="cart link"
+        href="/cart"
+        onClick={[Function]}
+      >
+        <p
+          className="MuiTypography-root MuiTypography-body1 css-fldieq-MuiTypography-root"
+        >
+          Cart (
+          0
+          )
+        </p>
+      </a>
+    </div>
+  </div>
+</header>
+`;
