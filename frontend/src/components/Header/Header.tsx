@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 
 export const Header: FC = () => {
   const { pathname } = useLocation();
-  const isOnLoginLink = pathname.includes("/login");
 
   const isOnMainPage = pathname === "/";
 
@@ -16,7 +15,7 @@ export const Header: FC = () => {
       // width="100"
       borderBottom="1px solid gray"
     >
-      <Typography variant="h3" padding={2} fontWeight="500" fontSize="44px">
+      <Typography variant="h1" padding={2} fontWeight="500" fontSize="44px">
         {isOnMainPage ? "Please login" : "Events manager"}
       </Typography>
 
@@ -35,7 +34,7 @@ export const Header: FC = () => {
         }}
       >
         <Grid item xs={12} sm={6}>
-          <Link to="/">
+          <Link to="/management">
             <Typography aria-label="home link" fontSize="22px">
               Home
             </Typography>

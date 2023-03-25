@@ -32,33 +32,13 @@ export const Login = () => {
         document.cookie = `id=${res.data.id}`;
 
         resetForm();
-        window.location.assign(`./index.html`);
+
+        window.location.assign(`./management`);
       })
       .catch((error) => {
         alert(error.response.data.error);
       });
-
-    console.log(userData);
   };
-
-  // const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
-  //   event.preventDefault();
-
-  //   axios
-  //     .post("https://glittery-dull-snickerdoodle.glitch.me/v1/prescriptions", {
-  //       medication_id: newPrescription.medication_id,
-  //       pet_id: params.id,
-  //       comment: newPrescription.comment,
-  //     })
-  //     .then(() => {
-  //       alert(`Prescription was added`);
-
-  //       resetForm();
-  //     })
-  //     .catch((error) => {
-  //       console.error(error.response.data.err);
-  //     });
-  // };
 
   return (
     <form onSubmit={handleFormSubmit}>

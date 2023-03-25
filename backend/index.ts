@@ -29,7 +29,7 @@ app.delete(
 app.patch("/visitors/update-visitor/:id", isLoggedIn || isAdmin, updateVisitor);
 
 app.get("/events", getEvents);
-app.get("/events/event-visitors/:id", getEventVisitors);
+app.get("/events/event-visitors/:id", isLoggedIn || isAdmin, getEventVisitors);
 
 app.post("/admin/add", isAdmin, addUser);
 app.delete("/admin/delete-user/:id", isAdmin, deleteUser);

@@ -1,10 +1,16 @@
-import { MainRoouter } from "./components/MainRouter/MainRouter";
+import { Fade } from "@mui/material";
+import { EventsContextProvider } from "./components/Contexts/EventsContext";
+import { MainRouter } from "./components/MainRouter/MainRouter";
 
 function App() {
   return (
-    <div className="App">
-      <MainRoouter />
-    </div>
+    <Fade in>
+      <div>
+        <EventsContextProvider>
+          <MainRouter />
+        </EventsContextProvider>
+      </div>
+    </Fade>
   );
 }
 
