@@ -1,8 +1,6 @@
-import { Grid, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import type { TEvent } from "../../types";
 import { EventsContext } from "../Contexts/EventsContext";
 import { Event } from "./Event";
 
@@ -10,9 +8,11 @@ export const Events = () => {
   const { events, setEvents } = useContext(EventsContext);
   const [isLoading, setIsLoading] = useState(false);
 
-  const GetEvents = () => {
+  const getEvents = () => {
     axios
-      .get("http://localhost:5000/Events")
+      .get("http://localhost:5000/events", {
+        headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
       .then((res) => {
         if (Array.isArray(res.data)) {
           setEvents(res.data);
@@ -23,29 +23,32 @@ export const Events = () => {
         // alert(error.response.data.error);
       })
       .finally(() => {
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       });
   };
 
   useEffect(() => {
     setIsLoading(true);
-    GetEvents();
-  }, [axios, setEvents]);
+    getEvents();
+  }, []);
 
   console.log(events);
 
   return (
-    <Box>
-      {isLoading && (
-        <Box>
-          <Typography>Loading...</Typography>
+    <Box display="flex" textAlign="center" justifyContent="center">
+      {isLoading ? (
+        <Box margin="40px">
+          <Typography variant="h3">Loading...</Typography>
         </Box>
+      ) : (
+        <Grid container gap="20px" marginTop="40px" justifyContent="center">
+          {events.map((event) => (
+            <Event key={event.id} event={event} />
+          ))}
+        </Grid>
       )}
-      <Box>
-        {events.map((event) => (
-          <Event key={event.id} event={event} />
-        ))}
-      </Box>
     </Box>
   );
 };

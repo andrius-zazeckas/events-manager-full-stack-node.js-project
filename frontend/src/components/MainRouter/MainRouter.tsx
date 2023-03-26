@@ -1,7 +1,14 @@
-import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Header, Login, Management, NotFoundPage } from "..";
-import { Events } from "../Events/Events";
+import {
+  Events,
+  EventVisitors,
+  Header,
+  Login,
+  Management,
+  NotFoundPage,
+  Visitors,
+} from "..";
+import { EditVisitor } from "../Visitors/EditVisitor";
 
 export const MainRouter = () => {
   // const [isAuth, setIsAuth] = useState(true);
@@ -31,6 +38,10 @@ export const MainRouter = () => {
 
         <Route path="/management" element={<Management />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/visitors" element={<Visitors />} />
+        <Route path="/visitors/edit-visitor/:id" element={<EditVisitor />} />
+
+        <Route path="/events/event-visitors/:id" element={<EventVisitors />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -7,8 +7,9 @@ import { addUser, deleteUser, updateUser } from "./src/routes/admin";
 import { register } from "./src/routes/register";
 import {
   deleteVisitor,
+  editVisitor,
+  getVisitorById,
   getVisitors,
-  updateVisitor,
 } from "./src/routes/visitors";
 import { getEvents, getEventVisitors } from "./src/routes/events";
 
@@ -21,14 +22,15 @@ app.post("/login", login);
 app.post("/register", isLoggedIn || isAdmin, register);
 
 app.get("/visitors", isLoggedIn || isAdmin, getVisitors);
+app.get("/visitors/visitor/:id", isLoggedIn || isAdmin, getVisitorById);
 app.delete(
   "/visitors/delete-visitor/:id",
   isLoggedIn || isAdmin,
   deleteVisitor
 );
-app.patch("/visitors/update-visitor/:id", isLoggedIn || isAdmin, updateVisitor);
+app.patch("/visitors/edit-visitor/:id", isLoggedIn || isAdmin, editVisitor);
 
-app.get("/events", getEvents);
+app.get("/events", isLoggedIn || isAdmin, getEvents);
 app.get("/events/event-visitors/:id", isLoggedIn || isAdmin, getEventVisitors);
 
 app.post("/admin/add", isAdmin, addUser);

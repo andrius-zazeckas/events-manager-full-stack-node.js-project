@@ -6,11 +6,46 @@ export const getVisitors = async (_, res) => {
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);
 
-    const [visitors] = await con.execute(`SELECT * FROM visitors`);
+    const [visitors] = await con.execute(
+      `SELECT visitors.id, visitors.full_name, visitors.event_id, visitors.email, visitors.age, visitors.date_of_birth, events.event_name FROM visitors INNER JOIN events ON visitors.event_id = events.id`
+    );
 
     await con.end();
 
     return res.status(200).send(visitors).end();
+  } catch (error) {
+    res.status(500).send(error).end();
+    return console.error(error);
+  }
+};
+
+export const getVisitorById = async (req, res) => {
+  const id = +mysql.escape(req.params.id.trim()).replaceAll("'", "");
+
+  if (id < 0 || Number.isNaN(id) || typeof id !== "number") {
+    return res
+      .status(400)
+      .send({
+        error: `Please provide id as a number in the URL: current id ${id} incorrect.`,
+      })
+      .end();
+  }
+
+  try {
+    const con = await mysql.createConnection(MYSQL_CONFIG);
+    const [visitor] = await con.execute(
+      `SELECT visitors.id, visitors.full_name, visitors.event_id, visitors.email, visitors.age, visitors.date_of_birth, events.event_name FROM visitors INNER JOIN events ON visitors.event_id = events.id WHERE visitors.id = ${id}`
+    );
+
+    if (Array.isArray(visitor) && !visitor.length) {
+      return res.status(404).send(`Visitor with ID - ${id} not found`).end();
+    }
+
+    // await con.execute(visitor);
+
+    await con.end();
+
+    return res.status(200).send(visitor).end();
   } catch (error) {
     res.status(500).send(error).end();
     return console.error(error);
@@ -52,7 +87,7 @@ export const deleteVisitor = async (req, res) => {
   }
 };
 
-export const updateVisitor = async (req, res) => {
+export const editVisitor = async (req, res) => {
   const id = +mysql.escape(req.params.id.trim()).replaceAll("'", "");
   let updatedVisitor = req.body;
 

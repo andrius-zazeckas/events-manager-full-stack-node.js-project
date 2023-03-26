@@ -2,3 +2,8 @@ export { NotFoundPage } from "./NotFoundPage";
 export { Login } from "./Login";
 export { Header } from "./Header";
 export { Management } from "./Management";
+export { Visitors } from "./Visitors";
+export { Events } from "./Events";
+export { Event } from "./Events";
+export { EventVisitors } from "./Events";
+export { EventVisitor } from "./Events";

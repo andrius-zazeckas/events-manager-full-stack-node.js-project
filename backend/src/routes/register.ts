@@ -33,7 +33,11 @@ export const register = async (req, res) => {
 
   const date_of_birth = registerData.date_of_birth.toLocaleDateString("lt-LT");
 
-  const query = `INSERT INTO visitors (full_name, event_id, email, age, date_of_birth) VALUES ('${registerData.full_name}', ${registerData.event_id}, '${registerData.email}', ${registerData.age}, '${date_of_birth}')`;
+  const query = `INSERT INTO visitors (full_name, event_id, email, age, date_of_birth) VALUES ('${
+    registerData.full_name
+  }', ${registerData.event_id}, '${registerData.email}', ${age(
+    new Date(registerData.date_of_birth)
+  )}, '${date_of_birth}')`;
 
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);

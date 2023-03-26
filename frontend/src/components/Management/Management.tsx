@@ -1,6 +1,10 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { useContext } from "react";
+import { EventsContext } from "../Contexts/EventsContext";
 
 export const Management = () => {
+  const { visitors } = useContext(EventsContext);
+
   const handleRegisterClick = () => {
     window.location.assign(`./register`);
   };
@@ -12,6 +16,8 @@ export const Management = () => {
   const handleVisitorsClick = () => {
     window.location.assign(`./visitors`);
   };
+
+  console.log(visitors[0]?.id);
 
   return (
     <Box textAlign="center">
