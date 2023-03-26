@@ -1,11 +1,14 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Input, InputLabel, Typography } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { EventsContext } from "../Contexts/EventsContext";
 import { Event } from "./Event";
+import { TEvent } from "./types";
 
 export const Events = () => {
   const { events, setEvents } = useContext(EventsContext);
+  const [filtered, setFiltered] = useState<TEvent[]>([]);
+  const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const getEvents = () => {
@@ -16,6 +19,7 @@ export const Events = () => {
       .then((res) => {
         if (Array.isArray(res.data)) {
           setEvents(res.data);
+          setFiltered(res.data);
         }
       })
       .catch((error) => {
@@ -34,7 +38,12 @@ export const Events = () => {
     getEvents();
   }, []);
 
-  console.log(events);
+  useEffect(() => {
+    const results = filtered.filter((res) =>
+      res.event_name?.toLowerCase().includes(result)
+    );
+    setEvents(results);
+  }, [result]);
 
   return (
     <Box display="flex" textAlign="center" justifyContent="center">
@@ -43,11 +52,22 @@ export const Events = () => {
           <Typography variant="h3">Loading...</Typography>
         </Box>
       ) : (
-        <Grid container gap="20px" marginTop="40px" justifyContent="center">
-          {events.map((event) => (
-            <Event key={event.id} event={event} />
-          ))}
-        </Grid>
+        <Box margin="40px" width="100%">
+          <Box>
+            <InputLabel htmlFor="event-search">Search Event</InputLabel>
+            <Input
+              id="event-search"
+              aria-describedby="event-search"
+              value={result}
+              onChange={(e) => setResult(e.target.value)}
+            />
+          </Box>
+          <Grid container gap="20px" marginTop="40px" justifyContent="center">
+            {events.map((event) => (
+              <Event key={event.id} event={event} />
+            ))}
+          </Grid>
+        </Box>
       )}
     </Box>
   );
