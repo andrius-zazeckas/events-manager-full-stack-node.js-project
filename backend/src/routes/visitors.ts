@@ -121,7 +121,7 @@ export const editVisitor = async (req, res) => {
 
     await con.execute(
       `UPDATE visitors SET full_name = '${updatedVisitor.full_name}', event_id = ${updatedVisitor.event_id}, 
-      email = '${updatedVisitor.email}', age = ${updatedVisitor.age}, date_of_birth = '${date_of_birth}' WHERE id = ${id}`
+      email = '${updatedVisitor.email}', date_of_birth = '${date_of_birth}' WHERE id = ${id}`
     );
 
     await con.end();

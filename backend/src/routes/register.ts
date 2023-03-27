@@ -6,7 +6,7 @@ export const registerSchema = Joi.object({
   full_name: Joi.string().required(),
   event_id: Joi.number().integer().required(),
   email: Joi.string().email().required(),
-  age: Joi.number().integer().required(),
+  // age: Joi.number().integer().required(),
   date_of_birth: Joi.date().required(),
 });
 

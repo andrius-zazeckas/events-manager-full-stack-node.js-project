@@ -17,13 +17,11 @@ import { EventVisitor } from "./EventVisitor";
 
 export const EventVisitors = () => {
   const { eventVisitors, setEventVisitors } = useContext(EventsContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const params = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
-
     axios
       .get(`http://localhost:5000/events/event-visitors/${params.id}`, {
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },

@@ -1,17 +1,17 @@
-import { Box, Grid, Input, InputLabel, Typography } from "@mui/material";
+import { Box, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { EventsContext } from "../Contexts/EventsContext";
 import { Event } from "./Event";
-import { TEvent } from "./types";
+import type { TEvent } from "./types";
 
 export const Events = () => {
   const { events, setEvents } = useContext(EventsContext);
   const [filtered, setFiltered] = useState<TEvent[]>([]);
   const [result, setResult] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const getEvents = () => {
+  useEffect(() => {
     axios
       .get("http://localhost:5000/events", {
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -31,19 +31,14 @@ export const Events = () => {
           setIsLoading(false);
         }, 1000);
       });
-  };
-
-  useEffect(() => {
-    setIsLoading(true);
-    getEvents();
-  }, []);
+  }, [setEvents]);
 
   useEffect(() => {
     const results = filtered.filter((res) =>
       res.event_name?.toLowerCase().includes(result)
     );
     setEvents(results);
-  }, [result]);
+  }, [result, filtered, setEvents]);
 
   return (
     <Box display="flex" textAlign="center" justifyContent="center">
@@ -52,14 +47,17 @@ export const Events = () => {
           <Typography variant="h3">Loading...</Typography>
         </Box>
       ) : (
-        <Box margin="40px" width="100%">
-          <Box>
-            <InputLabel htmlFor="event-search">Search Event</InputLabel>
-            <Input
+        <Box marginTop="40px" width="100%">
+          <Box width="300px" margin="0 auto">
+            <TextField
               id="event-search"
-              aria-describedby="event-search"
+              aria-label="event-search"
+              label="Search Visitor by name"
+              type="search"
+              variant="outlined"
               value={result}
               onChange={(e) => setResult(e.target.value)}
+              fullWidth
             />
           </Box>
           <Grid container gap="20px" marginTop="40px" justifyContent="center">

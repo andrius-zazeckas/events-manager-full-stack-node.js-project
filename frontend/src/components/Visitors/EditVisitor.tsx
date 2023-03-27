@@ -1,55 +1,95 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  Input,
-  InputLabel,
-  Typography,
-} from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  FormEventHandler,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useParams } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
-import { TVisitors } from "./types";
 
 export const EditVisitor = () => {
   const { visitors, setVisitors } = useContext(EventsContext);
   const [isLoading, setIsLoading] = useState(true);
+  const [updatedVisitor, setUpdatedVisitor] = useState<{
+    [key: string]: string;
+  }>({});
 
   const params = useParams();
 
+  const formatedVisitorsDate = new Date(
+    visitors[0]?.date_of_birth
+  ).toLocaleDateString("lt-LT");
+
   useEffect(() => {
-    const getVisitor = () => {
+    axios
+      .get(`http://localhost:5000/visitors/visitor/${params.id}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          setVisitors(res.data);
+        }
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+      })
+      .catch((error) => {
+        console.error(error);
+        // alert(error.response.data.error);
+      });
+  }, [params.id, setVisitors]);
+
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    prop: string
+  ) => {
+    setUpdatedVisitor({
+      ...updatedVisitor,
+      [prop]: event.target.value,
+    });
+  };
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    const formatedUpdatedVisitorDate = new Date(
+      updatedVisitor?.date_of_birth
+    ).toLocaleDateString("lt-LT");
+
+    if (!Object.keys(updatedVisitor).length) {
+      return alert("Please update the form before submitting");
+    }
+
+    if (window.confirm("Are you sure you want to edit this visitor?")) {
       axios
-        .get(`http://localhost:5000/visitors/visitor/${params.id}`, {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+        .patch(`http://localhost:5000/visitors/edit-visitor/${params.id}`, {
+          full_name: updatedVisitor?.full_name
+            ? updatedVisitor?.full_name
+            : visitors[0]?.full_name,
+          event_id: updatedVisitor?.event_id || visitors[0]?.event_id,
+          email: updatedVisitor?.email || visitors[0]?.email,
+          date_of_birth: updatedVisitor.date_of_birth
+            ? formatedUpdatedVisitorDate
+            : formatedVisitorsDate,
         })
-        .then((res) => {
-          if (Array.isArray(res.data)) {
-            setVisitors(res.data);
-          }
-        })
-        .finally(() => {
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 1000);
+        .then(() => {
+          alert(`Visitor updated successfully`);
+
+          // resetForm();
         })
         .catch((error) => {
-          console.error(error);
-          // alert(error.response.data.error);
+          //   alert(error.response.data.error);
+          console.error(error.response.data.error);
         });
-    };
-
-    getVisitor();
-  }, []);
-
-  const formatedDate = new Date(visitors[0]?.date_of_birth).toLocaleDateString(
-    "lt-LT"
-  );
-
-  console.log(visitors);
+    }
+  };
 
   return (
     <Box textAlign="center">
@@ -61,48 +101,50 @@ export const EditVisitor = () => {
           display="grid"
           maxWidth="300px"
           gap="10px"
-          margin="0 auto"
+          mx="auto"
+          my="40px"
+          onSubmit={handleSubmit}
         >
-          <FormControl variant="standard">
-            <InputLabel htmlFor="visitor-name">Full name</InputLabel>
-            <Input
-              id="visitor-name"
-              aria-describedby="visitor-name"
-              defaultValue={visitors[0]?.full_name}
-            />
-          </FormControl>
+          <TextField
+            id="edit-visitor-name"
+            aria-label="edit-visitor-name"
+            label="Full name"
+            variant="outlined"
+            defaultValue={visitors[0]?.full_name}
+            onChange={(event) => handleInputChange(event, "full_name")}
+          />
 
-          <FormControl variant="standard">
-            <InputLabel htmlFor="visitor-email">Email</InputLabel>
-            <Input
-              id="visitor-email"
-              aria-describedby="visitor-email"
-              defaultValue={visitors[0]?.email}
-            />
-          </FormControl>
+          <TextField
+            id="edit-visitor-email"
+            aria-label="edit-visitor-email"
+            label="Email"
+            variant="outlined"
+            defaultValue={visitors[0]?.email}
+            onChange={(event) => handleInputChange(event, "email")}
+          />
 
-          <FormControl variant="standard">
-            <InputLabel htmlFor="visitor-date-of-birth">
-              Date of birth
-            </InputLabel>
-            <Input
-              type="date"
-              id="visitor-date-of-birth"
-              aria-describedby="visitor-date-of-birth"
-              defaultValue={formatedDate}
-              //   value={n}
-            />
-          </FormControl>
+          <TextField
+            id="edit-visitor-date-of-birth"
+            aria-label="edit-visitor-date-of-birth"
+            label="Date of birth"
+            type="date"
+            variant="outlined"
+            defaultValue={formatedVisitorsDate}
+            onChange={(event) => handleInputChange(event, "date_of_birth")}
+          />
 
-          <FormControl variant="standard">
-            <InputLabel htmlFor="visitor-event">Event</InputLabel>
-            <Input
-              id="visitor-event"
-              aria-describedby="visitor-event"
-              defaultValue={visitors[0]?.event_name}
-            />
-          </FormControl>
-          <Button variant="contained">Save</Button>
+          <TextField
+            id="edit-visitor-event"
+            aria-label="edit-visitor-event"
+            label="Event"
+            variant="outlined"
+            defaultValue={visitors[0]?.event_name}
+            onChange={(event) => handleInputChange(event, "event_name")}
+          />
+
+          <Button type="submit" variant="contained">
+            Submit
+          </Button>
         </Box>
       )}
     </Box>

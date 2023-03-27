@@ -28,7 +28,7 @@ app.delete(
   isLoggedIn || isAdmin,
   deleteVisitor
 );
-app.patch("/visitors/edit-visitor/:id", isLoggedIn || isAdmin, editVisitor);
+app.patch("/visitors/edit-visitor/:id", editVisitor);
 
 app.get("/events", isLoggedIn || isAdmin, getEvents);
 app.get("/events/event-visitors/:id", isLoggedIn || isAdmin, getEventVisitors);
