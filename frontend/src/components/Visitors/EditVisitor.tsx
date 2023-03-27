@@ -7,7 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
 
 export const EditVisitor = () => {
@@ -18,6 +18,7 @@ export const EditVisitor = () => {
   }>({});
 
   const params = useParams();
+  const navigate = useNavigate();
 
   const formatedVisitorsDate = new Date(
     visitors[0]?.date_of_birth
@@ -128,6 +129,7 @@ export const EditVisitor = () => {
             aria-label="edit-visitor-date-of-birth"
             label="Date of birth"
             type="date"
+            InputLabelProps={{ shrink: true }}
             variant="outlined"
             defaultValue={formatedVisitorsDate}
             onChange={(event) => handleInputChange(event, "date_of_birth")}
@@ -141,10 +143,14 @@ export const EditVisitor = () => {
             defaultValue={visitors[0]?.event_name}
             onChange={(event) => handleInputChange(event, "event_name")}
           />
-
-          <Button type="submit" variant="contained">
-            Submit
-          </Button>
+          <Box display="flex" justifyContent="center" gap="20px">
+            <Button variant="outlined" onClick={() => navigate(-1)}>
+              Cancel
+            </Button>
+            <Button type="submit" variant="contained">
+              Submit
+            </Button>
+          </Box>
         </Box>
       )}
     </Box>

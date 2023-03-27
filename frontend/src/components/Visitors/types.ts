@@ -6,3 +6,7 @@ export type TVisitors = TEventVisitors & {
 };
 
 export type TVisitorProps = { visitor: TVisitors };
+
+export type TVisitor = {
+  visitor: TVisitors;
+};

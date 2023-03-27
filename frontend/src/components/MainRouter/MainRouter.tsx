@@ -9,6 +9,7 @@ import {
   Visitors,
 } from "..";
 import { EditVisitor } from "../Visitors/EditVisitor";
+import { RegisterNewVisitor } from "../Visitors/RegisterNewVisitor";
 
 export const MainRouter = () => {
   // const [isAuth, setIsAuth] = useState(true);
@@ -39,6 +40,7 @@ export const MainRouter = () => {
         <Route path="/management" element={<Management />} />
         <Route path="/events" element={<Events />} />
         <Route path="/visitors" element={<Visitors />} />
+        <Route path="/visitors/register" element={<RegisterNewVisitor />} />
         <Route path="/visitors/edit-visitor/:id" element={<EditVisitor />} />
 
         <Route path="/events/event-visitors/:id" element={<EventVisitors />} />

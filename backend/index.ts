@@ -19,8 +19,8 @@ app.use(express.json());
 app.use(cors());
 
 app.post("/login", login);
-app.post("/register", isLoggedIn || isAdmin, register);
 
+app.post("/visitors/register", isLoggedIn || isAdmin, register);
 app.get("/visitors", isLoggedIn || isAdmin, getVisitors);
 app.get("/visitors/visitor/:id", isLoggedIn || isAdmin, getVisitorById);
 app.delete(
