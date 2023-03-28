@@ -17,7 +17,8 @@ import type { TVisitors } from "./types";
 import { Visitor } from "./Visitor";
 
 export const Visitors = () => {
-  const { visitors, setVisitors } = useContext(EventsContext);
+  // const { visitors, setVisitors } = useContext(EventsContext);
+  const [visitors, setVisitors] = useState<TVisitors[]>([]);
   const [filtered, setFiltered] = useState<TVisitors[]>([]);
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(true);

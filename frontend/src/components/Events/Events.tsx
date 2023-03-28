@@ -39,7 +39,7 @@ export const Events = () => {
     );
     setEvents(results);
   }, [result, filtered, setEvents]);
-
+  console.log(events);
   return (
     <Box display="flex" textAlign="center" justifyContent="center">
       {isLoading ? (
@@ -52,7 +52,7 @@ export const Events = () => {
             <TextField
               id="event-search"
               aria-label="event-search"
-              label="Search Visitor by name"
+              label="Search events"
               type="search"
               variant="outlined"
               value={result}

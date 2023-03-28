@@ -1,13 +1,25 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  Input,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import { ChangeEvent, type FC, FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { TVisitor, TVisitors } from "./types";
+import { useGetEvents } from "../../hooks/useGetEvents";
+import type { TVisitors } from "./types";
 
 export const RegisterNewVisitor: FC = () => {
-  const [visitorData, setVisitorData] = useState<TVisitor>({
-    visitor: {} as TVisitors,
-  });
+  const [visitorData, setVisitorData] = useState({} as TVisitors);
+  const { events, isLoading } = useGetEvents();
 
   const navigate = useNavigate();
 
@@ -19,30 +31,44 @@ export const RegisterNewVisitor: FC = () => {
       ...visitorData,
       [prop]: event.target.value,
     });
+    console.log(visitorData);
+  };
+
+  const handleSelectChange = (
+    event: SelectChangeEvent<number>,
+    prop: string
+  ) => {
+    setVisitorData({
+      ...visitorData,
+      [prop]: event.target.value,
+    });
+    console.log(visitorData);
+  };
+
+  const resetForm = () => {
+    setVisitorData({} as TVisitors);
   };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    // const formatedUpdatedVisitorDate = new Date(
-    //   updatedVisitor?.date_of_birth
-    // ).toLocaleDateString("lt-LT");
-
-    // if (!Object.keys(updatedVisitor).length) {
-    //   return alert("Please update the form before submitting");
-    // }
-
     axios
-      .post(`http://localhost:5000/visitors/register`, {
-        full_name: visitorData.visitor.full_name,
-        event_id: visitorData.visitor.event_id,
-        email: visitorData.visitor.email,
-        date_of_birth: visitorData.visitor.date_of_birth,
-      })
+      .post(
+        `http://localhost:5000/visitors/register`,
+        {
+          full_name: visitorData.full_name,
+          event_id: visitorData.event_id,
+          email: visitorData.email,
+          date_of_birth: visitorData.date_of_birth,
+        },
+        {
+          headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
       .then(() => {
-        alert(`Visitor updated successfully`);
+        alert(`Visitor added successfully`);
 
-        // resetForm();
+        resetForm();
       })
       .catch((error) => {
         //   alert(error.response.data.error);
@@ -51,69 +77,90 @@ export const RegisterNewVisitor: FC = () => {
   };
 
   return (
-    <>
-      <Box textAlign="center">
-        <Typography variant="h2" margin="20px" fontSize="40px">
-          Register new Visitor
+    <Box margin="0 auto">
+      {isLoading ? (
+        <Typography textAlign="center" variant="h3">
+          Loading...
         </Typography>
-      </Box>
-      <Box
-        component="form"
-        display="grid"
-        maxWidth="300px"
-        gap="10px"
-        mx="auto"
-        my="40px"
-        onSubmit={handleSubmit}
-      >
-        <TextField
-          id="visitor-name"
-          aria-label="visitor-name"
-          label="Full name"
-          variant="outlined"
-          value={visitorData.visitor.full_name}
-          onChange={(event) => handleInputChange(event, "full_name")}
-        />
+      ) : (
+        <Box>
+          <Box>
+            <Typography
+              textAlign="center"
+              variant="h2"
+              margin="20px"
+              fontSize="40px"
+            >
+              Register new Visitor
+            </Typography>
+          </Box>
+          <Box
+            component="form"
+            display="grid"
+            maxWidth="300px"
+            gap="10px"
+            mx="auto"
+            my="40px"
+            onSubmit={handleSubmit}
+          >
+            <FormControl>
+              <InputLabel htmlFor="full_name">Full name</InputLabel>
+              <OutlinedInput
+                label="Full name"
+                value={visitorData.full_name ?? ""}
+                onChange={(event) => handleInputChange(event, "full_name")}
+              />
+            </FormControl>
 
-        <TextField
-          id="visitor-email"
-          aria-label="visitor-email"
-          label="Email"
-          variant="outlined"
-          value={visitorData.visitor.email}
-          onChange={(event) => handleInputChange(event, "email")}
-        />
+            <FormControl>
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <OutlinedInput
+                label="Email"
+                value={visitorData.email ?? ""}
+                onChange={(event) => handleInputChange(event, "email")}
+              />
+            </FormControl>
 
-        <TextField
-          id="visitor-date-of-birth"
-          aria-label="visitor-date-of-birth"
-          label="Date of birth"
-          type="date"
-          InputLabelProps={{ shrink: true }}
-          variant="outlined"
-          value={visitorData.visitor.date_of_birth}
-          onChange={(event) => handleInputChange(event, "date_of_birth")}
-        />
-        {/* 
-        <TextField
-          id="visitor-event"
-          aria-label="visitor-event"
-          label="Event"
-          select
-          variant="outlined"
-          //   value={visitorData[0]?.event_name}
-          // onChange={(event) => handleInputChange(event, "event_name")}
-        ></TextField> */}
+            <FormControl>
+              <InputLabel shrink htmlFor="date_of_birth">
+                Date of birth
+              </InputLabel>
+              <OutlinedInput
+                notched
+                type="date"
+                label="Date of birth"
+                value={visitorData.date_of_birth ?? ""}
+                onChange={(event) => handleInputChange(event, "date_of_birth")}
+              />
+            </FormControl>
 
-        <Box display="flex" justifyContent="center" gap="20px">
-          <Button variant="outlined" onClick={() => navigate(-1)}>
-            Cancel
-          </Button>
-          <Button type="submit" variant="contained">
-            Submit
-          </Button>
+            <FormControl>
+              <InputLabel htmlFor="event_id">Event</InputLabel>
+              <Select
+                label="Event"
+                value={visitorData.event_id ?? ""}
+                onChange={(event) => handleSelectChange(event, "event_id")}
+              >
+                {events.map((event) => (
+                  <MenuItem key={event.id} value={event.id}>
+                    {event.event_name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Box display="flex" justifyContent="center" gap="20px">
+              <Button variant="outlined" onClick={() => navigate(-1)}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </Box>
+            {/* </form> */}
+          </Box>
         </Box>
-      </Box>
-    </>
+      )}
+    </Box>
   );
 };
