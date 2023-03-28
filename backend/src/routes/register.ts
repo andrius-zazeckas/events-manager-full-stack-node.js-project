@@ -3,10 +3,10 @@ import { MYSQL_CONFIG } from "../config";
 import Joi from "joi";
 
 export const registerSchema = Joi.object({
-  full_name: Joi.string().required(),
+  first_name: Joi.string().trim().required(),
+  last_name: Joi.string().trim().required(),
   event_id: Joi.number().integer().required(),
-  email: Joi.string().email().required(),
-  // age: Joi.number().integer().required(),
+  email: Joi.string().email().trim().required(),
   date_of_birth: Joi.date().required(),
 });
 
@@ -18,9 +18,6 @@ export const register = async (req, res) => {
   } catch (error) {
     return res.status(400).send({ error: error.message }).end();
   }
-  //   const today = new Date().toLocaleDateString("lt-LT");
-  //   const date_of_birth = new Date(registerData.date_of_birth);
-  //   const calculatedAge = date_of_birth - date;
 
   const age = (birthday) => {
     const diff_ms = Date.now() - birthday.getTime();
@@ -29,15 +26,13 @@ export const register = async (req, res) => {
     return Math.abs(age_dt.getUTCFullYear() - 1970);
   };
 
-  console.log(age(new Date(registerData.date_of_birth)));
-
   const date_of_birth = registerData.date_of_birth.toLocaleDateString("lt-LT");
 
-  const query = `INSERT INTO visitors (full_name, event_id, email, age, date_of_birth) VALUES ('${
-    registerData.full_name
-  }', ${registerData.event_id}, '${registerData.email}', ${age(
-    new Date(registerData.date_of_birth)
-  )}, '${date_of_birth}')`;
+  const query = `INSERT INTO visitors (first_name, last_name, event_id, email, age, date_of_birth) VALUES ('${
+    registerData.first_name
+  }', '${registerData.last_name}', ${registerData.event_id}, '${
+    registerData.email
+  }', ${age(registerData.date_of_birth)}, '${date_of_birth}')`;
 
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);

@@ -7,7 +7,7 @@ export const getVisitors = async (_, res) => {
     const con = await mysql.createConnection(MYSQL_CONFIG);
 
     const [visitors] = await con.execute(
-      `SELECT visitors.id, visitors.full_name, visitors.event_id, visitors.email, visitors.age, visitors.date_of_birth, events.event_name FROM visitors INNER JOIN events ON visitors.event_id = events.id`
+      `SELECT visitors.id, visitors.first_name, visitors.last_name, visitors.event_id, visitors.email, visitors.age, visitors.date_of_birth, events.event_name FROM visitors INNER JOIN events ON visitors.event_id = events.id`
     );
 
     await con.end();
@@ -34,7 +34,7 @@ export const getVisitorById = async (req, res) => {
   try {
     const con = await mysql.createConnection(MYSQL_CONFIG);
     const [visitor] = await con.execute(
-      `SELECT visitors.id, visitors.full_name, visitors.event_id, visitors.email, visitors.age, visitors.date_of_birth, events.event_name FROM visitors INNER JOIN events ON visitors.event_id = events.id WHERE visitors.id = ${id}`
+      `SELECT visitors.id, visitors.first_name, visitors.last_name, visitors.event_id, visitors.email, visitors.age, visitors.date_of_birth, events.event_name FROM visitors INNER JOIN events ON visitors.event_id = events.id WHERE visitors.id = ${id}`
     );
 
     if (Array.isArray(visitor) && !visitor.length) {
@@ -116,12 +116,25 @@ export const editVisitor = async (req, res) => {
       return res.status(400).send({ error: error.message }).end();
     }
 
+    const age = (birthday) => {
+      const diff_ms = Date.now() - birthday.getTime();
+      const age_dt = new Date(diff_ms);
+
+      return Math.abs(age_dt.getUTCFullYear() - 1970);
+    };
+
     const date_of_birth =
       updatedVisitor.date_of_birth.toLocaleDateString("lt-LT");
 
     await con.execute(
-      `UPDATE visitors SET full_name = '${updatedVisitor.full_name}', event_id = ${updatedVisitor.event_id}, 
-      email = '${updatedVisitor.email}', date_of_birth = '${date_of_birth}' WHERE id = ${id}`
+      `UPDATE visitors SET first_name = '${
+        updatedVisitor.first_name
+      }', last_name = '${updatedVisitor.last_name}', event_id = ${
+        updatedVisitor.event_id
+      }, 
+      email = '${updatedVisitor.email}', age = ${age(
+        updatedVisitor.date_of_birth
+      )} , date_of_birth = '${date_of_birth}' WHERE id = ${id}`
     );
 
     await con.end();

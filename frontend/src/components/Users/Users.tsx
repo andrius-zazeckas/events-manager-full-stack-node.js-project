@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Paper,
   Table,
   TableBody,
@@ -12,25 +13,28 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
-import type { TVisitors } from "./types";
-import { Visitor } from "./Visitor";
+import { TUsers } from "./types";
+import { User } from "./User";
 
-export const Visitors = () => {
-  const { visitors, setVisitors } = useContext(EventsContext);
-  // const [visitors, setVisitors] = useState<TVisitors[]>([]);
-  const [filtered, setFiltered] = useState<TVisitors[]>([]);
+export const Users = () => {
+  //   const [users, setUsers] = useState<TUsers[]>([]);
+  const { users, setUsers } = useContext(EventsContext);
+  const [filtered, setFiltered] = useState<TUsers[]>([]);
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/visitors`, {
+      .get(`http://localhost:5000/admin/users`, {
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
         if (Array.isArray(res.data)) {
-          setVisitors(res.data);
+          setUsers(res.data);
           setFiltered(res.data);
         }
       })
@@ -43,16 +47,14 @@ export const Visitors = () => {
           setIsLoading(false);
         }, 1000);
       });
-  }, [setVisitors]);
+  }, [setUsers]);
 
   useEffect(() => {
-    const results = filtered.filter(
-      (res) =>
-        res.first_name?.toLowerCase().includes(result) ||
-        res.last_name?.toLowerCase().includes(result)
+    const results = filtered.filter((res) =>
+      res.username?.toLowerCase().includes(result)
     );
-    setVisitors(results);
-  }, [result, filtered, setVisitors]);
+    setUsers(results);
+  }, [result, filtered, setUsers]);
 
   return (
     <Box
@@ -70,9 +72,9 @@ export const Visitors = () => {
         <Box marginTop="40px" width="100%">
           <Box maxWidth="400px" margin="0 auto">
             <TextField
-              id="visitor-search"
-              aria-label="visitor-search"
-              label="Search Visitors"
+              id="user-search"
+              aria-label="user-search"
+              label="Search Users"
               type="search"
               variant="outlined"
               value={result}
@@ -80,37 +82,38 @@ export const Visitors = () => {
               fullWidth
             />
           </Box>
+
           <Box margin="40px" display="flex" justifyContent="center">
-            <Box sx={{ width: "90%", display: "table", tableLayout: "fixed" }}>
+            <Button onClick={() => navigate("/admin/register-user")}>
+              Register new user
+            </Button>
+          </Box>
+
+          <Box margin="40px" display="flex" justifyContent="center">
+            <Box sx={{ width: "80%", display: "table", tableLayout: "fixed" }}>
               <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="event visitors table">
+                <Table aria-label="event visitors table">
                   <TableHead>
                     <TableRow>
                       <TableCell sx={{ fontWeight: "bold" }} align="center">
-                        Visitor ID
+                        User ID
                       </TableCell>
                       <TableCell sx={{ fontWeight: "bold" }} align="center">
-                        Full name
+                        Username
                       </TableCell>
-                      <TableCell sx={{ fontWeight: "bold" }} align="center">
-                        Email
-                      </TableCell>
-                      <TableCell sx={{ fontWeight: "bold" }} align="center">
-                        Date of birth
-                      </TableCell>
-                      <TableCell sx={{ fontWeight: "bold" }} align="center">
-                        Age
-                      </TableCell>
-                      <TableCell sx={{ fontWeight: "bold" }} align="center">
-                        Event
-                      </TableCell>
-                      <TableCell align="center"></TableCell>
-                      <TableCell align="center"></TableCell>
+                      <TableCell
+                        sx={{ fontWeight: "bold" }}
+                        align="center"
+                      ></TableCell>
+                      <TableCell
+                        sx={{ fontWeight: "bold" }}
+                        align="center"
+                      ></TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {visitors.map((visitor) => (
-                      <Visitor key={visitor.id} visitor={visitor} />
+                    {users.map((user) => (
+                      <User key={user.id} user={user} />
                     ))}
                   </TableBody>
                 </Table>

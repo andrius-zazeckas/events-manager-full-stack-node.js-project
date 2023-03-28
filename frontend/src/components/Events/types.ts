@@ -7,7 +7,8 @@ export type TEvent = {
 
 export type TEventVisitors = {
   id: number;
-  full_name: string | null;
+  first_name: string | null;
+  last_name: string | null;
   email: string | null;
   age: number | null;
   date_of_birth: string | number | Date;

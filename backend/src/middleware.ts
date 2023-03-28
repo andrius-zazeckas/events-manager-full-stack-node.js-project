@@ -23,24 +23,24 @@ export const isLoggedIn = (req, res, next) => {
   return next();
 };
 
-export const isAdmin = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
+// export const isAdmin = (req, res, next) => {
+//   const token = req.headers.authorization?.split(" ")[1];
 
-  let payload = null;
+//   let payload = null;
 
-  if (!token) {
-    return res.status(401).send({ error: "User unauthorised" }).end();
-  }
+//   if (!token) {
+//     return res.status(401).send({ error: "User unauthorised" }).end();
+//   }
 
-  try {
-    payload = jwt.verify(token, jwtSecretAdmin);
-  } catch (error) {
-    if (error instanceof jwt.JsonWebTokenError) {
-      return res.status(401).send({ error: "User unauthorised" }).end();
-    }
+//   try {
+//     payload = jwt.verify(token, jwtSecretAdmin);
+//   } catch (error) {
+//     if (error instanceof jwt.JsonWebTokenError) {
+//       return res.status(401).send({ error: "User unauthorised" }).end();
+//     }
 
-    return res.status(400).send(error).end();
-  }
+//     return res.status(400).send(error).end();
+//   }
 
-  return next();
-};
+//   return next();
+// };

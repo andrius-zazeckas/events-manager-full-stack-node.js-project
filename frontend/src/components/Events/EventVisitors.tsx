@@ -10,12 +10,12 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { type FC, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
 import { EventVisitor } from "./EventVisitor";
 
-export const EventVisitors = () => {
+export const EventVisitors: FC = () => {
   const { eventVisitors, setEventVisitors } = useContext(EventsContext);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -56,6 +56,7 @@ export const EventVisitors = () => {
         </Box>
       ) : (
         <Box margin="40px">
+          <Typography variant="h3">Event visitors</Typography>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="event visitors table">
               <TableHead>
@@ -70,10 +71,10 @@ export const EventVisitors = () => {
                     Email
                   </TableCell>
                   <TableCell sx={{ fontWeight: "bold" }} align="center">
-                    Age
+                    Date of birth
                   </TableCell>
                   <TableCell sx={{ fontWeight: "bold" }} align="center">
-                    Date of birth
+                    Age
                   </TableCell>
                   <TableCell align="center"></TableCell>
                   <TableCell align="center"></TableCell>

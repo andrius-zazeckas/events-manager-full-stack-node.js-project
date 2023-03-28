@@ -1,9 +1,12 @@
 import { Box, Button, TextField } from "@mui/material";
 import { FormEventHandler, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [userData, setUserData] = useState({ username: "", password: "" });
+
+  const navigate = useNavigate();
 
   const handleUserDataChange = (
     value: string,
@@ -32,8 +35,7 @@ export const Login = () => {
         document.cookie = `id=${res.data.id}`;
 
         resetForm();
-
-        window.location.assign(`./management`);
+        navigate("/home");
       })
       .catch((error) => {
         alert(error.response.data.error);

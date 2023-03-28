@@ -39,7 +39,7 @@ export const Events = () => {
     );
     setEvents(results);
   }, [result, filtered, setEvents]);
-  console.log(events);
+
   return (
     <Box display="flex" textAlign="center" justifyContent="center">
       {isLoading ? (

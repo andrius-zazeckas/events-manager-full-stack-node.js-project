@@ -1,9 +1,16 @@
 export { NotFoundPage } from "./NotFoundPage";
 export { Login } from "./Login";
 export { Header } from "./Header";
-export { Management } from "./Management";
+export { Home } from "./Home";
 export { Visitors } from "./Visitors";
+export { Visitor } from "./Visitors";
+export { EditVisitor } from "./Visitors";
+export { RegisterNewVisitor } from "./Visitors";
 export { Events } from "./Events";
 export { Event } from "./Events";
 export { EventVisitors } from "./Events";
 export { EventVisitor } from "./Events";
+export { Users } from "./Users";
+export { User } from "./Users";
+export { RegisterNewUser } from "./Users";
+export { EditUser } from "./Users";

@@ -8,6 +8,52 @@ const newUserSchema = Joi.object({
   password: Joi.string().required(),
 });
 
+export const getUsers = async (_, res) => {
+  try {
+    const con = await mysql.createConnection(MYSQL_CONFIG);
+
+    const [users] = await con.execute(`SELECT * FROM users`);
+
+    await con.end();
+
+    return res.status(200).send(users).end();
+  } catch (error) {
+    res.status(500).send(error).end();
+    return console.error(error);
+  }
+};
+
+export const getUserById = async (req, res) => {
+  const id = +mysql.escape(req.params.id.trim()).replaceAll("'", "");
+
+  if (id < 0 || Number.isNaN(id) || typeof id !== "number") {
+    return res
+      .status(400)
+      .send({
+        error: `Please provide id as a number in the URL: current id ${id} incorrect.`,
+      })
+      .end();
+  }
+
+  try {
+    const con = await mysql.createConnection(MYSQL_CONFIG);
+    const [user] = await con.execute(`SELECT * FROM users WHERE id = ${id}`);
+
+    if (Array.isArray(user) && !user.length) {
+      return res.status(404).send(`Visitor with ID - ${id} not found`).end();
+    }
+
+    // await con.execute(visitor);
+
+    await con.end();
+
+    return res.status(200).send(user).end();
+  } catch (error) {
+    res.status(500).send(error).end();
+    return console.error(error);
+  }
+};
+
 export const addUser = async (req, res) => {
   let newUser = req.body;
 
@@ -78,7 +124,7 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-export const updateUser = async (req, res) => {
+export const editUser = async (req, res) => {
   const id = +mysql.escape(req.params.id.trim()).replaceAll("'", "");
   let newUser = req.body;
 

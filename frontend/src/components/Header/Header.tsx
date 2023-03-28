@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 export const Header: FC = () => {
   const { pathname } = useLocation();
 
-  const isOnMainPage = pathname === "/";
+  const isOnIndexPage = pathname === "/";
 
   return (
     <Box
@@ -15,40 +15,42 @@ export const Header: FC = () => {
       // width="100"
       borderBottom="1px solid gray"
     >
-      <Typography variant="h1" padding={2} fontWeight="500" fontSize="44px">
-        {isOnMainPage ? "Please login" : "Events manager"}
+      <Typography variant="h1" padding={2} fontWeight="500" fontSize="40px">
+        {isOnIndexPage ? "Please login" : "Events manager"}
       </Typography>
 
-      <Grid
-        role="navigation"
-        container
-        textAlign="center"
-        mb={2}
-        sx={{
-          "& a": {
-            color: "purple",
-            textDecoration: "none",
+      {!isOnIndexPage && (
+        <Grid
+          role="navigation"
+          container
+          textAlign="center"
+          mb={2}
+          sx={{
+            "& a": {
+              color: "purple",
+              textDecoration: "none",
 
-            ":hover": { color: "lightgreen" },
-          },
-        }}
-      >
-        <Grid item xs={12} sm={6}>
-          <Link to="/management">
-            <Typography aria-label="home link" fontSize="22px">
-              Home
-            </Typography>
-          </Link>
-        </Grid>
+              ":hover": { color: "lightgreen" },
+            },
+          }}
+        >
+          <Grid item xs={12} sm={6}>
+            <Link to="/home">
+              <Typography aria-label="home link" fontSize="22px">
+                Home
+              </Typography>
+            </Link>
+          </Grid>
 
-        <Grid item xs={12} sm={6}>
-          <Link to="/cart" aria-label="cart link">
-            <Typography fontSize="22px">
-              {/* Cart ({cartProducts.length}) */}
-            </Typography>
-          </Link>
+          <Grid item xs={12} sm={6}>
+            <Link to="/cart" aria-label="cart link">
+              <Typography fontSize="22px">
+                {/* Cart ({cartProducts.length}) */}
+              </Typography>
+            </Link>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Box>
   );
 };

@@ -2,13 +2,12 @@ import {
   Box,
   Button,
   FormControl,
-  Input,
+  FormHelperText,
   InputLabel,
   MenuItem,
   OutlinedInput,
   Select,
   SelectChangeEvent,
-  TextField,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -18,10 +17,17 @@ import { useGetEvents } from "../../hooks/useGetEvents";
 import type { TVisitors } from "./types";
 
 export const RegisterNewVisitor: FC = () => {
-  const [visitorData, setVisitorData] = useState({} as TVisitors);
+  const [visitorData, setVisitorData] = useState<TVisitors>({} as TVisitors);
   const { events, isLoading } = useGetEvents();
 
   const navigate = useNavigate();
+
+  const calculatedAge = (birthday: Date) => {
+    const diff_ms = Date.now() - birthday.getTime();
+    const age_dt = new Date(diff_ms);
+
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+  };
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -31,7 +37,6 @@ export const RegisterNewVisitor: FC = () => {
       ...visitorData,
       [prop]: event.target.value,
     });
-    console.log(visitorData);
   };
 
   const handleSelectChange = (
@@ -42,7 +47,6 @@ export const RegisterNewVisitor: FC = () => {
       ...visitorData,
       [prop]: event.target.value,
     });
-    console.log(visitorData);
   };
 
   const resetForm = () => {
@@ -56,7 +60,8 @@ export const RegisterNewVisitor: FC = () => {
       .post(
         `http://localhost:5000/visitors/register`,
         {
-          full_name: visitorData.full_name,
+          first_name: visitorData.first_name,
+          last_name: visitorData.last_name,
           event_id: visitorData.event_id,
           email: visitorData.email,
           date_of_birth: visitorData.date_of_birth,
@@ -104,11 +109,27 @@ export const RegisterNewVisitor: FC = () => {
             onSubmit={handleSubmit}
           >
             <FormControl>
-              <InputLabel htmlFor="full_name">Full name</InputLabel>
+              <InputLabel htmlFor="first_name">First name</InputLabel>
               <OutlinedInput
-                label="Full name"
-                value={visitorData.full_name ?? ""}
-                onChange={(event) => handleInputChange(event, "full_name")}
+                label="First name"
+                required
+                autoFocus
+                value={visitorData.first_name ?? ""}
+                onChange={(event) => handleInputChange(event, "first_name")}
+                error={!visitorData.first_name?.length}
+              />
+              {!visitorData.first_name?.length && (
+                <FormHelperText>This field is required</FormHelperText>
+              )}
+            </FormControl>
+
+            <FormControl>
+              <InputLabel htmlFor="last_name">Last name</InputLabel>
+              <OutlinedInput
+                label="Last name"
+                required
+                value={visitorData.last_name ?? ""}
+                onChange={(event) => handleInputChange(event, "last_name")}
               />
             </FormControl>
 
@@ -116,6 +137,7 @@ export const RegisterNewVisitor: FC = () => {
               <InputLabel htmlFor="email">Email</InputLabel>
               <OutlinedInput
                 label="Email"
+                required
                 value={visitorData.email ?? ""}
                 onChange={(event) => handleInputChange(event, "email")}
               />
@@ -129,8 +151,22 @@ export const RegisterNewVisitor: FC = () => {
                 notched
                 type="date"
                 label="Date of birth"
+                required
                 value={visitorData.date_of_birth ?? ""}
                 onChange={(event) => handleInputChange(event, "date_of_birth")}
+              />
+            </FormControl>
+
+            <FormControl>
+              <InputLabel htmlFor="age">Age</InputLabel>
+              <OutlinedInput
+                readOnly
+                label="Age"
+                value={
+                  visitorData.date_of_birth
+                    ? calculatedAge(new Date(visitorData.date_of_birth))
+                    : "First select date of birth"
+                }
               />
             </FormControl>
 
@@ -138,6 +174,7 @@ export const RegisterNewVisitor: FC = () => {
               <InputLabel htmlFor="event_id">Event</InputLabel>
               <Select
                 label="Event"
+                required
                 value={visitorData.event_id ?? ""}
                 onChange={(event) => handleSelectChange(event, "event_id")}
               >
@@ -157,7 +194,6 @@ export const RegisterNewVisitor: FC = () => {
                 Submit
               </Button>
             </Box>
-            {/* </form> */}
           </Box>
         </Box>
       )}

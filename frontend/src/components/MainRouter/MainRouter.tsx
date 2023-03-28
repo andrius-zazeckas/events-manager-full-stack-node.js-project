@@ -1,52 +1,85 @@
+import { Box } from "@mui/material";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
+  EditUser,
+  EditVisitor,
   Events,
   EventVisitors,
   Header,
+  Home,
   Login,
-  Management,
   NotFoundPage,
+  RegisterNewUser,
+  RegisterNewVisitor,
+  Users,
   Visitors,
 } from "..";
-import { EditVisitor } from "../Visitors/EditVisitor";
-import { RegisterNewVisitor } from "../Visitors/RegisterNewVisitor";
 
 export const MainRouter = () => {
-  // const [isAuth, setIsAuth] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // const isAuthed = () => {
-  //   if (!localStorage.getItem("token")) {
-  //     return setIsAuth(false);
-  //   }
-  //   return setIsAuth(true);
-  // };
+  const checkLogin = () => {
+    const token = localStorage.getItem("token");
+    const adminId = document.cookie;
 
-  // useEffect(() => {
-  //   isAuthed();
-  //   if (!isAuth) {
-  //     return window.location.assign(`./`);
-  //   }
-  // }, []);
+    if (token) {
+      setIsLoggedIn(true);
+    }
 
-  // console.log(isAuth);
+    if (token && adminId === "id=1") {
+      setIsAdmin(true);
+
+      return;
+    }
+    setIsUserLoggedIn(true);
+  };
+
+  useEffect(() => {
+    checkLogin();
+  }, []);
+
+  console.log(isLoggedIn, isAdmin, isUserLoggedIn);
 
   return (
     <BrowserRouter>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<Login />} />
+      {isLoggedIn ? (
+        <Routes>
+          <Route path="/" element={<Login />} />
 
-        <Route path="/management" element={<Management />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/visitors" element={<Visitors />} />
-        <Route path="/visitors/register" element={<RegisterNewVisitor />} />
-        <Route path="/visitors/edit-visitor/:id" element={<EditVisitor />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/visitors" element={<Visitors />} />
+          <Route path="/visitors/register" element={<RegisterNewVisitor />} />
+          <Route path="/visitors/edit-visitor/:id" element={<EditVisitor />} />
 
-        <Route path="/events/event-visitors/:id" element={<EventVisitors />} />
+          <Route
+            path="/events/event-visitors/:id"
+            element={<EventVisitors />}
+          />
+          <Route path="*" element={<NotFoundPage />} />
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          {isAdmin && <Route path="/users" element={<Users />} />}
+
+          {isAdmin && (
+            <Route path="/admin/register-user" element={<RegisterNewUser />} />
+          )}
+
+          {isAdmin && (
+            <Route path="/admin/edit-user/:id" element={<EditUser />} />
+          )}
+        </Routes>
+      ) : (
+        <Box textAlign="center" margin="40px">
+          <Routes>
+            <Route path="/" element={<Login />} />
+          </Routes>
+        </Box>
+      )}
     </BrowserRouter>
   );
 };

@@ -1,27 +1,47 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
 
-export const Management = () => {
-  const { visitors } = useContext(EventsContext);
+export const Home = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const navigate = useNavigate();
+
+  const isAdminLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    const adminId = document.cookie.split("id=")[1];
+
+    if (token && adminId === "1") {
+      setIsAdmin(true);
+    }
+  };
+
+  useEffect(() => {
+    isAdminLoggedIn();
+  }, []);
 
   const handleRegisterClick = () => {
-    window.location.assign(`./visitors/register`);
+    navigate(`/visitors/register`);
   };
 
   const handleEventsClick = () => {
-    window.location.assign(`./events`);
+    navigate(`/events`);
   };
 
   const handleVisitorsClick = () => {
-    window.location.assign(`./visitors`);
+    navigate(`/visitors`);
+  };
+
+  const handleUsersClick = () => {
+    navigate(`/users`);
   };
 
   return (
     <Box textAlign="center">
       <Grid
         container
-        aria-label="management"
+        aria-label="home page"
         display="flex"
         justifyContent="center"
         gridTemplateColumns="auto auto auto"
@@ -70,6 +90,24 @@ export const Management = () => {
         >
           <Typography variant="h5">Visitors</Typography>
         </Grid>
+        {isAdmin && (
+          <Grid
+            item
+            xs={6}
+            sm={3}
+            padding="40px"
+            boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
+            borderRadius="5px"
+            textAlign="center"
+            bgcolor="black"
+            sx={{ cursor: "pointer" }}
+            onClick={handleUsersClick}
+          >
+            <Typography variant="h5" color="white">
+              Users
+            </Typography>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );
