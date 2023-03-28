@@ -1,6 +1,7 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
 import { Event } from "./Event";
 import type { TEvent } from "./types";
@@ -10,6 +11,8 @@ export const Events = () => {
   const [filtered, setFiltered] = useState<TEvent[]>([]);
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -60,6 +63,16 @@ export const Events = () => {
               fullWidth
             />
           </Box>
+
+          <Box margin="40px" display="flex" justifyContent="center">
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/events/add-event")}
+            >
+              Add new Event
+            </Button>
+          </Box>
+
           <Grid container gap="20px" marginTop="40px" justifyContent="center">
             {events.map((event) => (
               <Event key={event.id} event={event} />

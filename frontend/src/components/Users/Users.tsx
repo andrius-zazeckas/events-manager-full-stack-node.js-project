@@ -84,7 +84,10 @@ export const Users = () => {
           </Box>
 
           <Box margin="40px" display="flex" justifyContent="center">
-            <Button onClick={() => navigate("/admin/register-user")}>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/admin/register-user")}
+            >
               Register new user
             </Button>
           </Box>

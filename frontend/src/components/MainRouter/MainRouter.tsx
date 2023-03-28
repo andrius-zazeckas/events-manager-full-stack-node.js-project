@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
+  AddEvent,
   EditUser,
   EditVisitor,
   Events,
@@ -53,6 +54,7 @@ export const MainRouter = () => {
 
           <Route path="/home" element={<Home />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/events/add-event" element={<AddEvent />} />
           <Route path="/visitors" element={<Visitors />} />
           <Route path="/visitors/register" element={<RegisterNewVisitor />} />
           <Route path="/visitors/edit-visitor/:id" element={<EditVisitor />} />

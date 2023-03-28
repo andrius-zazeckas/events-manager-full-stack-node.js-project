@@ -15,9 +15,9 @@ export const User: FC<TUserProps> = ({ user }) => {
   };
 
   const handleDeleteClick = () => {
-    if (window.confirm("Are you sure you want to delete this visitor?")) {
+    if (window.confirm("Are you sure you want to delete this user?")) {
       axios
-        .delete(`http://localhost:5000/users/delete-user/${user.id}`, {
+        .delete(`http://localhost:5000/admin/delete-user/${user.id}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem("token")}`,
           },

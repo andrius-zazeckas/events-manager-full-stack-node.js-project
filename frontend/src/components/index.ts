@@ -14,3 +14,4 @@ export { Users } from "./Users";
 export { User } from "./Users";
 export { RegisterNewUser } from "./Users";
 export { EditUser } from "./Users";
+export { AddEvent } from "./Events";

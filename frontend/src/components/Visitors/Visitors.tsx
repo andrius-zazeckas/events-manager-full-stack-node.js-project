@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Paper,
   Table,
   TableBody,
@@ -12,6 +13,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
 import type { TVisitors } from "./types";
 import { Visitor } from "./Visitor";
@@ -22,6 +24,8 @@ export const Visitors = () => {
   const [filtered, setFiltered] = useState<TVisitors[]>([]);
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -80,6 +84,15 @@ export const Visitors = () => {
               fullWidth
             />
           </Box>
+          <Box margin="40px" display="flex" justifyContent="center">
+            <Button
+              variant="outlined"
+              onClick={() => navigate(`/visitors/register`)}
+            >
+              Register new visitor
+            </Button>
+          </Box>
+
           <Box margin="40px" display="flex" justifyContent="center">
             <Box sx={{ width: "90%", display: "table", tableLayout: "fixed" }}>
               <TableContainer component={Paper}>

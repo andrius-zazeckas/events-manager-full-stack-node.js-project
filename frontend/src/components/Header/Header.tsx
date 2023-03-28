@@ -7,6 +7,11 @@ export const Header: FC = () => {
 
   const isOnIndexPage = pathname === "/";
 
+  const logoutHandler = () => {
+    localStorage.removeItem("token");
+    document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  };
+
   return (
     <Box
       component="header"
@@ -43,10 +48,8 @@ export const Header: FC = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Link to="/cart" aria-label="cart link">
-              <Typography fontSize="22px">
-                {/* Cart ({cartProducts.length}) */}
-              </Typography>
+            <Link onClick={logoutHandler} to="/" aria-label="cart link">
+              <Typography fontSize="22px">Logout</Typography>
             </Link>
           </Grid>
         </Grid>
