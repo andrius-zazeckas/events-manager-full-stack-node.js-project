@@ -1,7 +1,7 @@
 import mysql from "mysql2/promise";
 import bcrypt from "bcryptjs";
 import Joi from "joi";
-import { jwtSecret, MYSQL_CONFIG, expiresIn, jwtSecretAdmin } from "../config";
+import { jwtSecret, MYSQL_CONFIG, expiresIn } from "../config";
 import jwt from "jsonwebtoken";
 
 const userSchema = Joi.object({
