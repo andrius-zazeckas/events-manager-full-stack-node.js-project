@@ -48,7 +48,7 @@ export const EditEvent: FC = () => {
       })
       .catch((error) => {
         console.error(error);
-        // alert(error.response.data.error);
+        alert(error.response.data.error);
       });
   }, [params.id, setTempEvent]);
 

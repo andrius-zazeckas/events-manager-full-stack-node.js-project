@@ -41,8 +41,6 @@ export const getVisitorById = async (req, res) => {
       return res.status(404).send(`Visitor with ID - ${id} not found`).end();
     }
 
-    // await con.execute(visitor);
-
     await con.end();
 
     return res.status(200).send(visitor).end();

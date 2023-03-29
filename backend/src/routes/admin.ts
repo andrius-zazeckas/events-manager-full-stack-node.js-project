@@ -43,8 +43,6 @@ export const getUserById = async (req, res) => {
       return res.status(404).send(`Visitor with ID - ${id} not found`).end();
     }
 
-    // await con.execute(visitor);
-
     await con.end();
 
     return res.status(200).send(user).end();
@@ -146,12 +144,6 @@ export const editUser = async (req, res) => {
     if (Array.isArray(idExists) && !idExists.length) {
       return res.status(404).send(`User with ID - ${id} not found`).end();
     }
-
-    // await con.execute(query);
-
-    // await con.end();
-
-    // res.status(202).send("User was deleted").end();
 
     try {
       newUser = await newUserSchema.validateAsync(newUser);

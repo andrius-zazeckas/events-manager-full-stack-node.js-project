@@ -39,7 +39,7 @@ export const Users: FC = () => {
       })
       .catch((error) => {
         console.error(error);
-        // alert(error.response.data.error);
+        alert(error.response.data.error);
       })
       .finally(() => {
         setTimeout(() => {
@@ -56,13 +56,7 @@ export const Users: FC = () => {
   }, [result, filtered, setUsers]);
 
   return (
-    <Box
-      display="flex"
-      textAlign="center"
-      justifyContent="center"
-      //   maxWidth="800px"
-      mx="auto"
-    >
+    <Box display="flex" textAlign="center" justifyContent="center" mx="auto">
       {isLoading ? (
         <Box margin="40px">
           <Typography variant="h3">Loading...</Typography>

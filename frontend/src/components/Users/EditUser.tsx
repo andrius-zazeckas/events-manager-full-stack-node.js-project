@@ -31,11 +31,9 @@ export const EditUser: FC = () => {
       })
       .catch((error) => {
         console.error(error);
-        // alert(error.response.data.error);
+        alert(error.response.data.error);
       });
   }, [params.id, setUser]);
-
-  //   console.log(user);
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

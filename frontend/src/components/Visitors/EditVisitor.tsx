@@ -60,7 +60,7 @@ export const EditVisitor: FC = () => {
       })
       .catch((error) => {
         console.error(error);
-        // alert(error.response.data.error);
+        alert(error.response.data.error);
       });
   }, [params.id, setTempVisitor]);
 

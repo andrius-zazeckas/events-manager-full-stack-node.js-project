@@ -53,8 +53,7 @@ export const AddEvent: FC = () => {
         navigate(-1);
       })
       .catch((error) => {
-        //   alert(error.response.data.error);
-        console.error(error.response.data.error);
+        alert(error.response.data.error);
       });
   };
 
