@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Events matches snapshot 1`] = `
+<div
+  className="MuiBox-root css-1h31drq"
+>
+  <div
+    className="MuiBox-root css-1qapnz0"
+  >
+    <h3
+      className="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
+    >
+      Loading...
+    </h3>
+  </div>
+</div>
+`;

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header matches snapshot 1`] = `
+<header
+  className="MuiBox-root css-11nkda4"
+>
+  <div
+    className="MuiBox-root css-0"
+  >
+    <a
+      href="/home"
+      onClick={[Function]}
+    >
+      <img
+        alt="company logo"
+        src="logo.png"
+        style={
+          Object {
+            "height": "30px",
+          }
+        }
+      />
+    </a>
+  </div>
+  <h1
+    className="MuiTypography-root MuiTypography-h1 css-83vxh8-MuiTypography-root"
+    role="navigation"
+  >
+    Please login
+  </h1>
+</header>
+`;
