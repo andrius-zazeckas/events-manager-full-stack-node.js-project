@@ -117,9 +117,7 @@ export const EditVisitor: FC = () => {
 
           resetForm();
 
-          // if(pathname.includes("/"))
           navigate(-1);
-          //   window.location.reload();
         })
         .catch((error) => {
           alert(error.response.data.error);

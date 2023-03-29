@@ -3,6 +3,7 @@ import { Button, TableCell, TableRow } from "@mui/material";
 import type { TVisitorProps } from "./types";
 import axios from "axios";
 import { EventsContext } from "../Contexts/EventsContext";
+import { useNavigate } from "react-router-dom";
 
 export const Visitor: FC<TVisitorProps> = ({ visitor }) => {
   const formatedDate = new Date(visitor.date_of_birth).toLocaleDateString(
@@ -11,10 +12,12 @@ export const Visitor: FC<TVisitorProps> = ({ visitor }) => {
 
   const { setVisitors } = useContext(EventsContext);
 
+  const navigate = useNavigate();
+
   const full_name = `${visitor.first_name} ${visitor.last_name}`;
 
   const handleEditClick = () => {
-    window.location.assign(`/visitors/edit-visitor/${visitor.id}`);
+    navigate(`/visitors/edit-visitor/${visitor.id}`);
   };
 
   const handleDeleteClick = () => {

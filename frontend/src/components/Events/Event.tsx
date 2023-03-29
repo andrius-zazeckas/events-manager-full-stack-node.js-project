@@ -16,7 +16,7 @@ export const Event: FC<TEventProps> = ({ event }) => {
   };
 
   const handleEditClick = () => {
-    window.location.assign(`/events/edit-event/${event.id}`);
+    navigate(`/events/edit-event/${event.id}`);
   };
 
   const handleDeleteClick = () => {
