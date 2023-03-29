@@ -66,7 +66,7 @@ export const Users: FC = () => {
           <Box maxWidth="400px" margin="0 auto">
             <TextField
               id="user-search"
-              aria-label="user-search"
+              aria-label="user search"
               label="Search Users"
               type="search"
               variant="outlined"

@@ -54,7 +54,7 @@ export const Events: FC = () => {
           <Box width="300px" margin="0 auto">
             <TextField
               id="event-search"
-              aria-label="event-search"
+              aria-label="event search"
               label="Search events"
               type="search"
               variant="outlined"

@@ -155,7 +155,7 @@ export const EditVisitor: FC = () => {
             <FormControl>
               <TextField
                 id="edit-visitor-first-name"
-                aria-label="edit-visitor-first-name"
+                aria-label="edit visitor first name"
                 label="First name"
                 variant="outlined"
                 required
@@ -167,7 +167,7 @@ export const EditVisitor: FC = () => {
             <FormControl>
               <TextField
                 id="edit-visitor-last-name"
-                aria-label="edit-visitor-last-name"
+                aria-label="edit visitor last name"
                 label="Last name"
                 variant="outlined"
                 required
@@ -179,7 +179,7 @@ export const EditVisitor: FC = () => {
             <FormControl>
               <TextField
                 id="edit-visitor-email"
-                aria-label="edit-visitor-email"
+                aria-label="edit visitor email"
                 label="Email"
                 type="email"
                 variant="outlined"
@@ -192,7 +192,7 @@ export const EditVisitor: FC = () => {
             <FormControl>
               <TextField
                 id="edit-visitor-date-of-birth"
-                aria-label="edit-visitor-date-of-birth"
+                aria-label="edit visitor date of birth"
                 label="Date of birth"
                 type="date"
                 InputLabelProps={{ shrink: true }}
@@ -206,7 +206,7 @@ export const EditVisitor: FC = () => {
             <FormControl>
               <TextField
                 id="visitor-event"
-                aria-label="visitor-event"
+                aria-label="visitor event"
                 label="Event"
                 sx={{ textAlign: "left" }}
                 select

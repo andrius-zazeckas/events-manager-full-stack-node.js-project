@@ -68,7 +68,7 @@ export const Visitors: FC = () => {
           <Box maxWidth="400px" margin="0 auto">
             <TextField
               id="visitor-search"
-              aria-label="visitor-search"
+              aria-label="visitor search"
               label="Search Visitors"
               type="search"
               variant="outlined"

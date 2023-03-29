@@ -58,7 +58,7 @@ export const Header: FC = () => {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Link onClick={logoutHandler} to="/" aria-label="cart link">
+            <Link onClick={logoutHandler} to="/" aria-label="logout link">
               <Typography fontSize="22px">Logout</Typography>
             </Link>
           </Grid>
