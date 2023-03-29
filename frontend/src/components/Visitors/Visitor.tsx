@@ -48,10 +48,9 @@ export const Visitor: FC<TVisitorProps> = ({ visitor }) => {
     <TableRow
       sx={{
         "&:last-child td, &:last-child th": { border: 0 },
-        cursor: "pointer",
+
         ":hover": { bgcolor: "#DFE6E9", color: "#2D3436" },
       }}
-      onClick={handleEditClick}
     >
       <TableCell align="center">{visitor.id}</TableCell>
       <TableCell align="center">{full_name}</TableCell>
