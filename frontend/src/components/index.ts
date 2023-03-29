@@ -16,3 +16,5 @@ export { RegisterNewUser } from "./Users";
 export { EditUser } from "./Users";
 export { AddEvent } from "./Events";
 export { EditEvent } from "./Events";
+export { RequireAdmin } from "./Auth";
+export { RequireAuth } from "./Auth";

@@ -37,7 +37,14 @@ export const User: FC<TUserProps> = ({ user }) => {
   };
 
   return (
-    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+    <TableRow
+      sx={{
+        "&:last-child td, &:last-child th": { border: 0 },
+        cursor: "pointer",
+        ":hover": { bgcolor: "#DFE6E9", color: "#2D3436" },
+      }}
+      onClick={handleEditClick}
+    >
       <TableCell align="center">{user.id}</TableCell>
 
       <TableCell align="center">{user.username}</TableCell>

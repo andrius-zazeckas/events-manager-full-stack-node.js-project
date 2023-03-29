@@ -1,9 +1,12 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { type FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useLoginStatus } from "../Auth/LoggedIn";
 
 export const Header: FC = () => {
   const { pathname } = useLocation();
+
+  const { isLoggedIn, isAdmin } = useLoginStatus();
 
   const isOnIndexPage = pathname === "/";
   const isOnEventsPage = pathname === "/events";
