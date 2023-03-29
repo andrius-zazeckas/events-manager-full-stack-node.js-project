@@ -1,18 +1,16 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  MenuItem,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  type FC,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetEvents } from "../../hooks/useGetEvents";
-import { TEvent } from "./types";
+import type { TEvent } from "./types";
 
-export const EditEvent = () => {
+export const EditEvent: FC = () => {
   const [tempEvent, setTempEvent] = useState<TEvent>({} as TEvent);
   const [isLoading, setIsLoading] = useState(true);
   const [updatedEvent, setUpdatedEvent] = useState<{
@@ -22,8 +20,6 @@ export const EditEvent = () => {
   const formatedEventDate = new Date(tempEvent?.date).toLocaleDateString(
     "lt-LT"
   );
-
-  const { events } = useGetEvents();
 
   const params = useParams();
   const navigate = useNavigate();

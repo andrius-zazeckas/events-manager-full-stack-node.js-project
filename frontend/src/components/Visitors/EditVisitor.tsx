@@ -7,15 +7,20 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  type FC,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetEvents } from "../../hooks/useGetEvents";
-import { EventsContext } from "../Contexts/EventsContext";
-import { TVisitors } from "./types";
+import type { TVisitors } from "./types";
 
-export const EditVisitor = () => {
+export const EditVisitor: FC = () => {
   const [tempVisitor, setTempVisitor] = useState<TVisitors>({} as TVisitors);
-  //   const {visitors, setVisitors} = useContext(EventsContext);
+
   const [isLoading, setIsLoading] = useState(true);
   const [updatedVisitor, setUpdatedVisitor] = useState<{
     [key: string]: string;

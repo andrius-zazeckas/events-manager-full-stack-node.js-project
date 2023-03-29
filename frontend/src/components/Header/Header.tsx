@@ -9,8 +9,6 @@ export const Header: FC = () => {
   const isOnEventsPage = pathname === "/events";
   const isOnVisitorsPage = pathname === "/visitors";
   const isOnUsersPage = pathname === "/users";
-  const isOnRegisterPage = pathname === "/visitors/register";
-  const isOnAddUserPage = pathname === "/admin/register-user";
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
@@ -22,7 +20,6 @@ export const Header: FC = () => {
       component="header"
       textAlign="center"
       margin="0 auto"
-      // width="100"
       borderBottom="1px solid gray"
     >
       <Typography variant="h1" padding={2} fontWeight="500" fontSize="40px">

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   AddEvent,
@@ -18,7 +18,7 @@ import {
   Visitors,
 } from "..";
 
-export const MainRouter = () => {
+export const MainRouter: FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);

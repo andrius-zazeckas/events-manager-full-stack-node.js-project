@@ -1,9 +1,9 @@
 import { Box, Button, TextField } from "@mui/material";
-import { FormEventHandler, useState } from "react";
+import { type FC, FormEventHandler, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Login: FC = () => {
   const [userData, setUserData] = useState({ username: "", password: "" });
 
   const navigate = useNavigate();

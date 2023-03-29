@@ -1,10 +1,16 @@
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  type FC,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { TUsers } from "./types";
+import type { TUsers } from "./types";
 
-export const EditUser = () => {
+export const EditUser: FC = () => {
   const [user, setUser] = useState<TUsers>({} as TUsers);
   const [updatedUser, setUpdatedUser] = useState<TUsers>({} as TUsers);
 

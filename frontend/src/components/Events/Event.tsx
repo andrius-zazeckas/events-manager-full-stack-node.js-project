@@ -3,10 +3,10 @@ import axios from "axios";
 import { type FC, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
-import { TEventProps } from "./types";
+import type { TEventProps } from "./types";
 
 export const Event: FC<TEventProps> = ({ event }) => {
-  const { events, setEvents } = useContext(EventsContext);
+  const { setEvents } = useContext(EventsContext);
   const formatedDate = new Date(event.date).toLocaleDateString("lt-LT");
 
   const navigate = useNavigate();

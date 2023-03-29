@@ -7,11 +7,11 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { ChangeEvent, FormEventHandler, useState } from "react";
+import { ChangeEvent, type FC, FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { TEvent } from "./types";
 
-export const AddEvent = () => {
+export const AddEvent: FC = () => {
   const [newEvent, setNewEvent] = useState<TEvent>({} as TEvent);
 
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { type FC, useContext } from "react";
 import { Button, TableCell, TableRow } from "@mui/material";
 import type { TVisitorProps } from "./types";
 import axios from "axios";

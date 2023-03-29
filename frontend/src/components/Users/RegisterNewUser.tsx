@@ -8,11 +8,11 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { ChangeEvent, FormEventHandler, useState } from "react";
+import { ChangeEvent, type FC, FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TUsers } from "./types";
+import type { TUsers } from "./types";
 
-export const RegisterNewUser = () => {
+export const RegisterNewUser: FC = () => {
   const [user, setUser] = useState<TUsers>({} as TUsers);
 
   const navigate = useNavigate();

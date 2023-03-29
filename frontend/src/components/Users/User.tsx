@@ -1,9 +1,9 @@
 import { Button, TableCell, TableRow } from "@mui/material";
 import axios from "axios";
-import { FC, useContext } from "react";
+import { type FC, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
-import { TUserProps } from "./types";
+import type { TUserProps } from "./types";
 
 export const User: FC<TUserProps> = ({ user }) => {
   const { setUsers } = useContext(EventsContext);

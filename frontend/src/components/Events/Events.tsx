@@ -1,12 +1,12 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { type FC, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
 import { Event } from "./Event";
 import type { TEvent } from "./types";
 
-export const Events = () => {
+export const Events: FC = () => {
   const { events, setEvents } = useContext(EventsContext);
   const [filtered, setFiltered] = useState<TEvent[]>([]);
   const [result, setResult] = useState("");

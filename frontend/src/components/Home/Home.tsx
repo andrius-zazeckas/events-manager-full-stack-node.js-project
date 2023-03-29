@@ -1,9 +1,8 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { EventsContext } from "../Contexts/EventsContext";
 
-export const Home = () => {
+export const Home: FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();

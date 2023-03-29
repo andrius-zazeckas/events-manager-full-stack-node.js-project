@@ -12,14 +12,13 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { type FC, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EventsContext } from "../Contexts/EventsContext";
-import { TUsers } from "./types";
+import type { TUsers } from "./types";
 import { User } from "./User";
 
-export const Users = () => {
-  //   const [users, setUsers] = useState<TUsers[]>([]);
+export const Users: FC = () => {
   const { users, setUsers } = useContext(EventsContext);
   const [filtered, setFiltered] = useState<TUsers[]>([]);
   const [result, setResult] = useState("");
