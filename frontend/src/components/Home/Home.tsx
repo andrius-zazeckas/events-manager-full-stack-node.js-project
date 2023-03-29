@@ -51,7 +51,8 @@ export const Home: FC = () => {
         <Grid
           item
           xs={6}
-          sm={2}
+          md={2}
+          sm={3}
           padding="40px"
           boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
           borderRadius="5px"
@@ -68,7 +69,8 @@ export const Home: FC = () => {
         <Grid
           item
           xs={6}
-          sm={2}
+          md={2}
+          sm={3}
           padding="40px"
           boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
           borderRadius="5px"
@@ -85,7 +87,8 @@ export const Home: FC = () => {
         <Grid
           item
           xs={6}
-          sm={2}
+          md={2}
+          sm={3}
           padding="40px"
           boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
           borderRadius="5px"
@@ -102,7 +105,8 @@ export const Home: FC = () => {
           <Grid
             item
             xs={6}
-            sm={2}
+            md={2}
+            sm={3}
             padding="40px"
             boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
             borderRadius="5px"
