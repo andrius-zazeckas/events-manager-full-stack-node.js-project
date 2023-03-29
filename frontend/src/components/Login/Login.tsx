@@ -1,12 +1,14 @@
 import { Box, Button, TextField } from "@mui/material";
 import { type FC, FormEventHandler, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Login: FC = () => {
   const [userData, setUserData] = useState({ username: "", password: "" });
 
   const navigate = useNavigate();
+
+  const { pathname } = useLocation();
 
   const handleUserDataChange = (
     value: string,
@@ -35,6 +37,11 @@ export const Login: FC = () => {
         document.cookie = `id=${res.data.id}`;
 
         resetForm();
+
+        if (pathname === "/home") {
+          window.location.reload();
+        }
+
         navigate("/home");
       })
       .catch((error) => {

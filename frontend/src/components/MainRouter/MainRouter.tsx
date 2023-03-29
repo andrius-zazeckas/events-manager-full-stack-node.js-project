@@ -35,14 +35,63 @@ export const MainRouter: FC = () => {
             </RequireAuth>
           }
         />
-        <Route path="/events" element={<Events />} />
-        <Route path="/events/add-event" element={<AddEvent />} />
-        <Route path="/events/edit-event/:id" element={<EditEvent />} />
-        <Route path="/visitors" element={<Visitors />} />
-        <Route path="/visitors/register" element={<RegisterNewVisitor />} />
-        <Route path="/visitors/edit-visitor/:id" element={<EditVisitor />} />
+        <Route
+          path="/events"
+          element={
+            <RequireAuth>
+              <Events />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/events/add-event"
+          element={
+            <RequireAuth>
+              <AddEvent />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/events/edit-event/:id"
+          element={
+            <RequireAuth>
+              <EditEvent />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/visitors"
+          element={
+            <RequireAuth>
+              <Visitors />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/visitors/register"
+          element={
+            <RequireAuth>
+              <RegisterNewVisitor />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/visitors/edit-visitor/:id"
+          element={
+            <RequireAuth>
+              <EditVisitor />
+            </RequireAuth>
+          }
+        />
 
-        <Route path="/events/event-visitors/:id" element={<EventVisitors />} />
+        <Route
+          path="/events/event-visitors/:id"
+          element={
+            <RequireAuth>
+              <EventVisitors />
+            </RequireAuth>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
 
         <Route
