@@ -58,7 +58,7 @@ export const RegisterNewUser = () => {
             textAlign="center"
             variant="h2"
             margin="20px"
-            fontSize="40px"
+            fontSize="30px"
           >
             Register new User
           </Typography>

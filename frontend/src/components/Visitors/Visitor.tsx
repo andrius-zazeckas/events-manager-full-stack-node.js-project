@@ -53,7 +53,9 @@ export const Visitor: FC<TVisitorProps> = ({ visitor }) => {
         <Button onClick={handleEditClick}>Edit</Button>
       </TableCell>
       <TableCell align="left">
-        <Button onClick={handleDeleteClick}>Delete</Button>
+        <Button color="secondary" onClick={handleDeleteClick}>
+          Delete
+        </Button>
       </TableCell>
     </TableRow>
   );

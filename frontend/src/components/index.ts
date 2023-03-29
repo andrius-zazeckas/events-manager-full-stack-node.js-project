@@ -15,3 +15,4 @@ export { User } from "./Users";
 export { RegisterNewUser } from "./Users";
 export { EditUser } from "./Users";
 export { AddEvent } from "./Events";
+export { EditEvent } from "./Events";

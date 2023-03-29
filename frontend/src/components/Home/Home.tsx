@@ -52,12 +52,15 @@ export const Home = () => {
         <Grid
           item
           xs={6}
-          sm={3}
+          sm={2}
           padding="40px"
           boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
           borderRadius="5px"
           textAlign="center"
-          sx={{ cursor: "pointer" }}
+          sx={{
+            cursor: "pointer",
+            ":hover": { bgcolor: "#002984", color: "white" },
+          }}
           onClick={handleRegisterClick}
         >
           <Typography variant="h5">Register</Typography>
@@ -66,12 +69,15 @@ export const Home = () => {
         <Grid
           item
           xs={6}
-          sm={3}
+          sm={2}
           padding="40px"
           boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
           borderRadius="5px"
           textAlign="center"
-          sx={{ cursor: "pointer" }}
+          sx={{
+            cursor: "pointer",
+            ":hover": { bgcolor: "#002984", color: "white" },
+          }}
           onClick={handleEventsClick}
         >
           <Typography variant="h5">Events</Typography>
@@ -80,12 +86,15 @@ export const Home = () => {
         <Grid
           item
           xs={6}
-          sm={3}
+          sm={2}
           padding="40px"
           boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
           borderRadius="5px"
           textAlign="center"
-          sx={{ cursor: "pointer" }}
+          sx={{
+            cursor: "pointer",
+            ":hover": { bgcolor: "#002984", color: "white" },
+          }}
           onClick={handleVisitorsClick}
         >
           <Typography variant="h5">Visitors</Typography>
@@ -94,13 +103,16 @@ export const Home = () => {
           <Grid
             item
             xs={6}
-            sm={3}
+            sm={2}
             padding="40px"
             boxShadow="0px 0px 8px 1px rgba(0, 0, 0, 0.1)"
             borderRadius="5px"
             textAlign="center"
             bgcolor="black"
-            sx={{ cursor: "pointer" }}
+            sx={{
+              cursor: "pointer",
+              ":hover": { bgcolor: "#002984", color: "white" },
+            }}
             onClick={handleUsersClick}
           >
             <Typography variant="h5" color="white">

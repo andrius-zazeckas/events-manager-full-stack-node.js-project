@@ -56,7 +56,9 @@ export const EventVisitors: FC = () => {
         </Box>
       ) : (
         <Box margin="40px">
-          <Typography variant="h3">Event visitors</Typography>
+          <Typography variant="h4" marginBottom="40px">
+            Event visitors
+          </Typography>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="event visitors table">
               <TableHead>

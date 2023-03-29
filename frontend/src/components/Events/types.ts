@@ -3,6 +3,7 @@ export type TEvent = {
   event_name: string | null;
   description: string | null;
   date: string | number | Date;
+  image: string;
 };
 
 export type TEventVisitors = {

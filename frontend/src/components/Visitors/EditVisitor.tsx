@@ -128,91 +128,105 @@ export const EditVisitor = () => {
       {isLoading ? (
         <Typography variant="h3">Loading...</Typography>
       ) : (
-        <Box
-          component="form"
-          display="grid"
-          maxWidth="300px"
-          gap="10px"
-          mx="auto"
-          my="40px"
-          onSubmit={handleSubmit}
-        >
-          <FormControl>
-            <TextField
-              id="edit-visitor-first-name"
-              aria-label="edit-visitor-first-name"
-              label="First name"
-              variant="outlined"
-              required
-              defaultValue={tempVisitor?.first_name}
-              onChange={(event) => handleInputChange(event, "first_name")}
-            />
-          </FormControl>
-
-          <FormControl>
-            <TextField
-              id="edit-visitor-last-name"
-              aria-label="edit-visitor-last-name"
-              label="Last name"
-              variant="outlined"
-              required
-              defaultValue={tempVisitor?.last_name}
-              onChange={(event) => handleInputChange(event, "last_name")}
-            />
-          </FormControl>
-
-          <FormControl>
-            <TextField
-              id="edit-visitor-email"
-              aria-label="edit-visitor-email"
-              label="Email"
-              variant="outlined"
-              required
-              defaultValue={tempVisitor?.email}
-              onChange={(event) => handleInputChange(event, "email")}
-            />
-          </FormControl>
-
-          <FormControl>
-            <TextField
-              id="edit-visitor-date-of-birth"
-              aria-label="edit-visitor-date-of-birth"
-              label="Date of birth"
-              type="date"
-              InputLabelProps={{ shrink: true }}
-              variant="outlined"
-              required
-              defaultValue={formatedVisitorsDate}
-              onChange={(event) => handleInputChange(event, "date_of_birth")}
-            />
-          </FormControl>
-
-          <FormControl>
-            <TextField
-              id="visitor-event"
-              aria-label="visitor-event"
-              label="Event"
-              sx={{ textAlign: "left" }}
-              select
-              variant="outlined"
-              required
-              defaultValue={tempVisitor?.event_id}
-              onChange={(event) => handleInputChange(event, "event_id")}
+        <Box>
+          <Box>
+            <Typography
+              textAlign="center"
+              variant="h2"
+              margin="20px"
+              fontSize="30px"
             >
-              {events.map((event) => (
-                <MenuItem key={event.id} value={event.id}>
-                  {event.event_name}
-                </MenuItem>
-              ))}
-            </TextField>
-          </FormControl>
-          <Box display="flex" justifyContent="center" gap="20px">
-            <Button variant="outlined" onClick={() => navigate(-1)}>
-              Cancel
-            </Button>
-            <Button type="submit" variant="contained">
-              Submit
-            </Button>
+              Edit Visitor
+            </Typography>
+          </Box>
+
+          <Box
+            component="form"
+            display="grid"
+            maxWidth="300px"
+            gap="10px"
+            mx="auto"
+            my="40px"
+            onSubmit={handleSubmit}
+          >
+            <FormControl>
+              <TextField
+                id="edit-visitor-first-name"
+                aria-label="edit-visitor-first-name"
+                label="First name"
+                variant="outlined"
+                required
+                defaultValue={tempVisitor?.first_name}
+                onChange={(event) => handleInputChange(event, "first_name")}
+              />
+            </FormControl>
+
+            <FormControl>
+              <TextField
+                id="edit-visitor-last-name"
+                aria-label="edit-visitor-last-name"
+                label="Last name"
+                variant="outlined"
+                required
+                defaultValue={tempVisitor?.last_name}
+                onChange={(event) => handleInputChange(event, "last_name")}
+              />
+            </FormControl>
+
+            <FormControl>
+              <TextField
+                id="edit-visitor-email"
+                aria-label="edit-visitor-email"
+                label="Email"
+                type="email"
+                variant="outlined"
+                required
+                defaultValue={tempVisitor?.email}
+                onChange={(event) => handleInputChange(event, "email")}
+              />
+            </FormControl>
+
+            <FormControl>
+              <TextField
+                id="edit-visitor-date-of-birth"
+                aria-label="edit-visitor-date-of-birth"
+                label="Date of birth"
+                type="date"
+                InputLabelProps={{ shrink: true }}
+                variant="outlined"
+                required
+                defaultValue={formatedVisitorsDate}
+                onChange={(event) => handleInputChange(event, "date_of_birth")}
+              />
+            </FormControl>
+
+            <FormControl>
+              <TextField
+                id="visitor-event"
+                aria-label="visitor-event"
+                label="Event"
+                sx={{ textAlign: "left" }}
+                select
+                variant="outlined"
+                required
+                defaultValue={tempVisitor?.event_id}
+                onChange={(event) => handleInputChange(event, "event_id")}
+              >
+                {events.map((event) => (
+                  <MenuItem key={event.id} value={event.id}>
+                    {event.event_name}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </FormControl>
+            <Box display="flex" justifyContent="center" gap="20px">
+              <Button variant="outlined" onClick={() => navigate(-1)}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </Box>
           </Box>
         </Box>
       )}

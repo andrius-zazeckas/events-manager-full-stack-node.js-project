@@ -24,8 +24,6 @@ export const AddEvent = () => {
       ...newEvent,
       [prop]: event.target.value,
     });
-
-    console.log(newEvent);
   };
 
   const resetForm = () => {
@@ -42,6 +40,7 @@ export const AddEvent = () => {
           event_name: newEvent.event_name,
           date: newEvent.date,
           description: newEvent.description,
+          image: newEvent.image,
         },
         {
           headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -69,7 +68,7 @@ export const AddEvent = () => {
             margin="20px"
             fontSize="40px"
           >
-            Register new User
+            Add new Event
           </Typography>
         </Box>
         <Box
@@ -113,6 +112,15 @@ export const AddEvent = () => {
               required
               value={newEvent.date ?? ""}
               onChange={(event) => handleInputChange(event, "date")}
+            />
+          </FormControl>
+
+          <FormControl>
+            <InputLabel htmlFor="Event-image">Event image URL</InputLabel>
+            <OutlinedInput
+              label="Event image"
+              value={newEvent.image ?? ""}
+              onChange={(event) => handleInputChange(event, "image")}
             />
           </FormControl>
 

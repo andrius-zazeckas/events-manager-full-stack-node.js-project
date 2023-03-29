@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, TextField } from "@mui/material";
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -91,6 +91,17 @@ export const EditUser = () => {
         my="40px"
         onSubmit={handleSubmit}
       >
+        <Box>
+          <Typography
+            textAlign="center"
+            variant="h2"
+            margin="20px"
+            fontSize="30px"
+          >
+            Edit user "{user?.username}"
+          </Typography>
+        </Box>
+
         <FormControl>
           <TextField
             id="edit-user-username"

@@ -17,7 +17,14 @@ import {
   getVisitorById,
   getVisitors,
 } from "./src/routes/visitors";
-import { addEvent, getEvents, getEventVisitors } from "./src/routes/events";
+import {
+  addEvent,
+  deleteEvent,
+  editEvent,
+  getEventById,
+  getEvents,
+  getEventVisitors,
+} from "./src/routes/events";
 
 const app = express();
 
@@ -33,8 +40,11 @@ app.delete("/visitors/delete-visitor/:id", isLoggedIn, deleteVisitor);
 app.patch("/visitors/edit-visitor/:id", isLoggedIn, editVisitor);
 
 app.get("/events", isLoggedIn, getEvents);
-app.post("/events/add-event", isLoggedIn, addEvent);
 app.get("/events/event-visitors/:id", isLoggedIn, getEventVisitors);
+app.get("/events/event/:id", isLoggedIn, getEventById);
+app.post("/events/add-event", isLoggedIn, addEvent);
+app.patch("/events/edit-event/:id", isLoggedIn, editEvent);
+app.delete("/events/delete-event/:id", isLoggedIn, deleteEvent);
 
 app.get("/admin/users", isLoggedIn, getUsers);
 app.get("/admin/users/:id", isLoggedIn, getUserById);

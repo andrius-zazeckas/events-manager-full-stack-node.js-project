@@ -94,7 +94,7 @@ export const RegisterNewVisitor: FC = () => {
               textAlign="center"
               variant="h2"
               margin="20px"
-              fontSize="40px"
+              fontSize="30px"
             >
               Register new Visitor
             </Typography>
@@ -137,6 +137,7 @@ export const RegisterNewVisitor: FC = () => {
               <InputLabel htmlFor="email">Email</InputLabel>
               <OutlinedInput
                 label="Email"
+                type="email"
                 required
                 value={visitorData.email ?? ""}
                 onChange={(event) => handleInputChange(event, "email")}

@@ -6,6 +6,11 @@ export const Header: FC = () => {
   const { pathname } = useLocation();
 
   const isOnIndexPage = pathname === "/";
+  const isOnEventsPage = pathname === "/events";
+  const isOnVisitorsPage = pathname === "/visitors";
+  const isOnUsersPage = pathname === "/users";
+  const isOnRegisterPage = pathname === "/visitors/register";
+  const isOnAddUserPage = pathname === "/admin/register-user";
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
@@ -21,7 +26,15 @@ export const Header: FC = () => {
       borderBottom="1px solid gray"
     >
       <Typography variant="h1" padding={2} fontWeight="500" fontSize="40px">
-        {isOnIndexPage ? "Please login" : "Events manager"}
+        {isOnIndexPage
+          ? "Please login"
+          : isOnEventsPage
+          ? "Events"
+          : isOnVisitorsPage
+          ? "Visitors"
+          : isOnUsersPage
+          ? "Users"
+          : "Events manager"}
       </Typography>
 
       {!isOnIndexPage && (
@@ -32,10 +45,10 @@ export const Header: FC = () => {
           mb={2}
           sx={{
             "& a": {
-              color: "purple",
+              color: "#757de8",
               textDecoration: "none",
 
-              ":hover": { color: "lightgreen" },
+              ":hover": { color: "#002984" },
             },
           }}
         >
