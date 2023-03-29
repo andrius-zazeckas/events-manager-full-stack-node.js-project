@@ -73,7 +73,13 @@ export const Events: FC = () => {
             </Button>
           </Box>
 
-          <Grid container gap="20px" marginTop="40px" justifyContent="center">
+          <Grid
+            container
+            gap="20px"
+            marginTop="40px"
+            justifyContent="center"
+            aria-label="Events page"
+          >
             {events.map((event) => (
               <Event key={event.id} event={event} />
             ))}

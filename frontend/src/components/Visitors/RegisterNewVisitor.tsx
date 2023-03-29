@@ -82,7 +82,7 @@ export const RegisterNewVisitor: FC = () => {
   };
 
   return (
-    <Box margin="0 auto">
+    <Box margin="0 auto" aria-label="register new visitor form">
       {isLoading ? (
         <Typography textAlign="center" variant="h3">
           Loading...

@@ -43,7 +43,13 @@ export const EventVisitors: FC = () => {
   }, [params.id, setEventVisitors]);
 
   return (
-    <Box display="flex" textAlign="center" justifyContent="center" mx="auto">
+    <Box
+      display="flex"
+      textAlign="center"
+      justifyContent="center"
+      mx="auto"
+      aria-label="Event visitors page"
+    >
       {isLoading ? (
         <Box margin="40px">
           <Typography variant="h3">Loading...</Typography>

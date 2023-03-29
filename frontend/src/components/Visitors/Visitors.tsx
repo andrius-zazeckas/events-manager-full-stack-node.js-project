@@ -58,7 +58,13 @@ export const Visitors: FC = () => {
   }, [result, filtered, setVisitors]);
 
   return (
-    <Box display="flex" textAlign="center" justifyContent="center" mx="auto">
+    <Box
+      display="flex"
+      textAlign="center"
+      justifyContent="center"
+      mx="auto"
+      aria-label="visitors page"
+    >
       {isLoading ? (
         <Box margin="40px">
           <Typography variant="h3">Loading...</Typography>

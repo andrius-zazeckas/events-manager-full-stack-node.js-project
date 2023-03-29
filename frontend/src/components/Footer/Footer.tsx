@@ -15,6 +15,7 @@ export const Footer: FC = () => {
       textAlign="center"
       padding="20px"
       position="relative"
+      aria-label="footer"
     >
       <Typography
         textAlign="center"

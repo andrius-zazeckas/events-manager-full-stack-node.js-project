@@ -51,7 +51,7 @@ export const RegisterNewUser: FC = () => {
   };
 
   return (
-    <Box margin="0 auto">
+    <Box margin="0 auto" aria-label="Register new user form">
       <Box>
         <Box>
           <Typography

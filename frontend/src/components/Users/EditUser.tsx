@@ -85,7 +85,7 @@ export const EditUser: FC = () => {
   };
 
   return (
-    <Box textAlign="center">
+    <Box textAlign="center" aria-label="Edit user form">
       <Box
         component="form"
         display="grid"

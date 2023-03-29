@@ -114,7 +114,7 @@ export const EditEvent: FC = () => {
   };
 
   return (
-    <Box textAlign="center">
+    <Box textAlign="center" aria-label="edit event form">
       {isLoading ? (
         <Typography variant="h3">Loading...</Typography>
       ) : (

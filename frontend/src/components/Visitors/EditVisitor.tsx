@@ -136,7 +136,7 @@ export const EditVisitor: FC = () => {
   };
 
   return (
-    <Box textAlign="center">
+    <Box textAlign="center" aria-label="Edit visitor form">
       {isLoading ? (
         <Typography variant="h3">Loading...</Typography>
       ) : (
