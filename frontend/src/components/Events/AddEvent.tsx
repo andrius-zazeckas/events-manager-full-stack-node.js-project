@@ -58,7 +58,7 @@ export const AddEvent: FC = () => {
   };
 
   return (
-    <Box margin="0 auto">
+    <Box margin="0 auto" aria-label="add new event form">
       <Box>
         <Box>
           <Typography

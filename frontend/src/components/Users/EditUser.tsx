@@ -85,7 +85,7 @@ export const EditUser: FC = () => {
   };
 
   return (
-    <Box textAlign="center" aria-label="Edit user form">
+    <Box textAlign="center" aria-label="edit user form">
       <Box
         component="form"
         display="grid"

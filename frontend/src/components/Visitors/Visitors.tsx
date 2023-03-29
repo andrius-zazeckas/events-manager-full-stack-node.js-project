@@ -63,7 +63,7 @@ export const Visitors: FC = () => {
       textAlign="center"
       justifyContent="center"
       mx="auto"
-      aria-label="visitors page"
+      aria-label="visitors table"
     >
       {isLoading ? (
         <Box margin="40px">

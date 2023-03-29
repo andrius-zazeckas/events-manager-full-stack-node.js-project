@@ -44,7 +44,12 @@ export const Events: FC = () => {
   }, [result, filtered, setEvents]);
 
   return (
-    <Box display="flex" textAlign="center" justifyContent="center">
+    <Box
+      display="flex"
+      textAlign="center"
+      justifyContent="center"
+      aria-label="events table"
+    >
       {isLoading ? (
         <Box margin="40px">
           <Typography variant="h3">Loading...</Typography>
@@ -78,7 +83,7 @@ export const Events: FC = () => {
             gap="20px"
             marginTop="40px"
             justifyContent="center"
-            aria-label="Events page"
+            aria-label="events page"
           >
             {events.map((event) => (
               <Event key={event.id} event={event} />

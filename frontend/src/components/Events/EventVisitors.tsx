@@ -48,7 +48,7 @@ export const EventVisitors: FC = () => {
       textAlign="center"
       justifyContent="center"
       mx="auto"
-      aria-label="Event visitors page"
+      aria-label="event visitors table"
     >
       {isLoading ? (
         <Box margin="40px">

@@ -61,7 +61,7 @@ export const Users: FC = () => {
       textAlign="center"
       justifyContent="center"
       mx="auto"
-      aria-label="Users page"
+      aria-label="users table"
     >
       {isLoading ? (
         <Box margin="40px">
