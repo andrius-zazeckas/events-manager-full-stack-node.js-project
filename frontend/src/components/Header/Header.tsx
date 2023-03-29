@@ -1,6 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { type FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 export const Header: FC = () => {
   const { pathname } = useLocation();
@@ -17,12 +18,23 @@ export const Header: FC = () => {
 
   return (
     <Box
-      component="header"
-      textAlign="center"
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
       margin="0 auto"
-      borderBottom="1px solid gray"
+      marginTop="10px"
+      marginBottom="5px"
+      padding=" 0 10%"
+      paddingBottom="10px"
+      minHeight="64px"
+      borderBottom="1px rgb(232, 232, 232) solid"
     >
-      <Typography variant="h1" padding={2} fontWeight="500" fontSize="40px">
+      <Box>
+        <Link to="/home">
+          <img style={{ height: "30px" }} src={logo} alt="company logo" />
+        </Link>
+      </Box>
+      <Typography variant="h1" padding={2} fontWeight="500" fontSize="30px">
         {isOnIndexPage
           ? "Please login"
           : isOnEventsPage
@@ -39,7 +51,7 @@ export const Header: FC = () => {
           role="navigation"
           container
           textAlign="center"
-          mb={2}
+          width="200px"
           sx={{
             "& a": {
               color: "#757de8",

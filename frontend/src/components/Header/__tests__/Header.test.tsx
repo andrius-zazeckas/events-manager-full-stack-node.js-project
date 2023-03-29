@@ -1,20 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import { Header } from "../Header";
 import renderer from "react-test-renderer";
 
 describe("Header", () => {
-  //   it("should render links", () => {
-  //     render(
-  //       <BrowserRouter>
-  //         <Header />
-  //       </BrowserRouter>
-  //     );
-
-  //     expect(screen.getByLabelText("home link")).toBeVisible();
-  //     expect(screen.getByLabelText("cart link")).toBeVisible();
-  //   });
-
   it("matches snapshot", () => {
     const tree = renderer.create(
       <BrowserRouter>
@@ -25,11 +14,11 @@ describe("Header", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it.each(["home link", "cart link"])("should render %s", (link) => {
+  it.each(["home link", "logout link"])("should render %s", (link) => {
     render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={["/home"]}>
         <Header />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     expect(screen.getByLabelText(link)).toBeVisible();

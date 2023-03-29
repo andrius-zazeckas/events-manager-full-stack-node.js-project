@@ -2,7 +2,9 @@ import {
   Box,
   Button,
   FormControl,
+  InputLabel,
   MenuItem,
+  OutlinedInput,
   TextField,
   Typography,
 } from "@mui/material";
@@ -34,6 +36,13 @@ export const EditVisitor: FC = () => {
 
   const params = useParams();
   const navigate = useNavigate();
+
+  const calculatedAge = (birthday: Date) => {
+    const diff_ms = Date.now() - birthday.getTime();
+    const age_dt = new Date(diff_ms);
+
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+  };
 
   useEffect(() => {
     axios
@@ -200,6 +209,19 @@ export const EditVisitor: FC = () => {
                 required
                 defaultValue={formatedVisitorsDate}
                 onChange={(event) => handleInputChange(event, "date_of_birth")}
+              />
+            </FormControl>
+
+            <FormControl>
+              <InputLabel htmlFor="age">Age</InputLabel>
+              <OutlinedInput
+                readOnly
+                label="Age"
+                value={
+                  updatedVisitor?.date_of_birth
+                    ? calculatedAge(new Date(updatedVisitor?.date_of_birth))
+                    : "First select date of birth"
+                }
               />
             </FormControl>
 

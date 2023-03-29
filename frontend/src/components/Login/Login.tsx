@@ -50,7 +50,7 @@ export const Login: FC = () => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} aria-label="login page">
       <Box textAlign="center" my="30px">
         <Box>
           <TextField

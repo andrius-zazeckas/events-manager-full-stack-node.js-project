@@ -37,7 +37,7 @@ export const Home: FC = () => {
   };
 
   return (
-    <Box textAlign="center">
+    <Box textAlign="center" role="home page">
       <Grid
         container
         aria-label="home page"
