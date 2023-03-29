@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
-import { TEvent, TEventVisitors } from "../Events/types";
-import { TUsers } from "../Users";
-import { TVisitors } from "../Visitors/types";
+import type { TEvent, TEventVisitors } from "../Events/types";
+import type { TUsers } from "../Users";
+import type { TVisitors } from "../Visitors/types";
 import type { TEventsContext } from "./types";
 
 export const EventsContext = createContext<TEventsContext>({

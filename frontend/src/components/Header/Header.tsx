@@ -18,6 +18,7 @@ export const Header: FC = () => {
 
   return (
     <Box
+      component="header"
       display="flex"
       justifyContent="space-between"
       alignItems="center"
@@ -34,7 +35,13 @@ export const Header: FC = () => {
           <img style={{ height: "30px" }} src={logo} alt="company logo" />
         </Link>
       </Box>
-      <Typography variant="h1" padding={2} fontWeight="500" fontSize="30px">
+      <Typography
+        variant="h1"
+        padding={2}
+        fontWeight="500"
+        fontSize="30px"
+        role="navigation"
+      >
         {isOnIndexPage
           ? "Please login"
           : isOnEventsPage

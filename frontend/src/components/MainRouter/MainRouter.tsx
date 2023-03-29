@@ -7,6 +7,7 @@ import {
   EditVisitor,
   Events,
   EventVisitors,
+  Footer,
   Header,
   Home,
   Login,
@@ -119,6 +120,8 @@ export const MainRouter: FC = () => {
           }
         />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 };

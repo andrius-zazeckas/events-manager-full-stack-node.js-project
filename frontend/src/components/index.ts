@@ -18,3 +18,4 @@ export { AddEvent } from "./Events";
 export { EditEvent } from "./Events";
 export { RequireAdmin } from "./Auth";
 export { RequireAuth } from "./Auth";
+export { Footer } from "./Footer";
