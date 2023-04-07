@@ -14,11 +14,13 @@ import axios from "axios";
 import { ChangeEvent, type FC, FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetEvents } from "../../hooks/useGetEvents";
+import { AppropriateAge } from "../../hooks/AppropriateAge";
 import type { TVisitors } from "./types";
 
 export const RegisterNewVisitor: FC = () => {
   const [visitorData, setVisitorData] = useState<TVisitors>({} as TVisitors);
   const { events, isLoading } = useGetEvents();
+  const appropriateAge = AppropriateAge();
 
   const navigate = useNavigate();
 
@@ -151,6 +153,7 @@ export const RegisterNewVisitor: FC = () => {
               <OutlinedInput
                 notched
                 type="date"
+                inputProps={{ max: appropriateAge }}
                 label="Date of birth"
                 required
                 value={visitorData.date_of_birth ?? ""}

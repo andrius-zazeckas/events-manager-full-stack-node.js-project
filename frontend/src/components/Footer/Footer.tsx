@@ -13,7 +13,7 @@ export const Footer: FC = () => {
       marginTop="100px"
       bgcolor="#DFE6E9"
       textAlign="center"
-      padding="20px"
+      paddingBottom="200px"
       position="relative"
       aria-label="footer"
     >
