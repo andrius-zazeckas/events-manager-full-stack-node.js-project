@@ -17,6 +17,7 @@ import {
   useState,
 } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { AppropriateAge } from "../../hooks/AppropriateAge";
 import { useGetEvents } from "../../hooks/useGetEvents";
 import type { TVisitors } from "./types";
 
@@ -27,6 +28,7 @@ export const EditVisitor: FC = () => {
   const [updatedVisitor, setUpdatedVisitor] = useState<{
     [key: string]: string;
   }>({});
+  const appropriateAge = AppropriateAge();
 
   const formatedVisitorsDate = new Date(
     tempVisitor?.date_of_birth
@@ -205,6 +207,7 @@ export const EditVisitor: FC = () => {
                 label="Date of birth"
                 type="date"
                 InputLabelProps={{ shrink: true }}
+                inputProps={{ max: appropriateAge }}
                 variant="outlined"
                 required
                 defaultValue={formatedVisitorsDate}
