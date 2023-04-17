@@ -9,12 +9,13 @@ export const Footer: FC = () => {
       justifyContent="center"
       alignItems="center"
       width="100%"
-      height="50px"
-      marginTop="100px"
+      height="100px"
+      // marginTop="100px"
       bgcolor="#DFE6E9"
       textAlign="center"
-      paddingBottom="200px"
-      position="relative"
+      // paddingBottom="200px"
+      position="absolute"
+      bottom="0"
       aria-label="footer"
     >
       <Typography

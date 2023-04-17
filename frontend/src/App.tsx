@@ -5,7 +5,15 @@ import { MainRouter } from "./components/MainRouter/MainRouter";
 function App() {
   return (
     <Fade in>
-      <div>
+      <div
+        style={{
+          minHeight: "90vh",
+          overflow: "hidden",
+          display: "block",
+          position: "relative",
+          paddingBottom: "100px",
+        }}
+      >
         <EventsContextProvider>
           <MainRouter />
         </EventsContextProvider>
