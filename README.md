@@ -1,61 +1,30 @@
-# final-full-stack-with-node.js-project
+# Events Manager Full-Stack Application
 
-## Baigiamasis projektas
+Welcome to the **Events Manager** project! This full-stack application allows users to create, manage, and attend events. Whether you're organizing a conference, meetup, or social gathering, this platform has you covered.
 
-Šio projekto metu reikės sukurti programą naudojant React, NodeJS Express ir MongoDB arba MySQL. Programos tikslas - leisti renginių organizavimu užsiimančiai įmonei, registruoti telefonu paskambinusius asmenis į renginį.
+## Features
 
-Renginių organizatorius, prisijungęs prie programos, matys:
+- **User Authentication**: Secure user registration and login.
+- **Event Creation**: Create new events with details like date, time, location, image and description.
+- **Event Listing**: View a list of upcoming events.
+- **Event Details**: Click on an event to see more information.
+- **Admin Panel**: Manage events, users, and other settings.
 
-- Registracijos formą, kurioje:
+## Technology Stack
 
-  - vardas ir pavardė;
+- **Front-End**:
+  - React (Client-side rendering)
+  - Material UI (Styling)
 
-  - renginys (vienas iš pasirinkimų, o ne textarea);
+- **Back-End**:
+  - Node.js (Server-side logic)
+  - Express.js (API routing)
+  - MySQL (Database)
 
-  - el.paštas;
+## Getting Started
 
-  - amžius;
-
-  - gimimo data.
-
-- Renginių sąrašą bei paspaudęs ant renginio pamatys registruotų vartotojų sąrašą.
-
-- Bendrą užsiregistravusių vartotojų sąrašą (nurodoma lentelė su vartotojo vardu ir pavarde, el. paštu, gimimo data, renginio pavadinimu, administravimo mygtukais).
-
-- Galimybę atsijungti - šiems atvejams atskiri endpointai ir vaizdai (angl. routes/endpoints bei views).
-
-## Funkcionalumas:
-
-a. CRUD operacijos (pvz.: registracijos formoje galima sukurti vartotoją, lentelėje matyti, atnaujinti ir ištrinti vartotojus);
-
-b. Duomenų saugojimas (vartotojai saugomi duomenų bazėje). Jeigu naudojate MySQL duomenų bazę būtina sukurti sąryšius tarp lentelių ir naudoti "Primary Key" apribojimus.
-
-c. Saugus duomenų talpinimas bei prisijungimas.
-
-d. Dizainas, kurį sukursite patys. Rekomenduotina naudoti Material UI bei Material Design, tačiau leistini ir kiti sprendimai.
-
-e. Stabilumas. Rekomenduotina naudoti Jest arba react-testing-library bei TypeScript.
-
-#### Papildomas akcentas semantikai bei prieinamumui (angl. accessibility).
-
-Užduoties įkėlimo instrukcijos
-
-Instrukcijas, kaip valdyti GitHub repozitorijas rasite - https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories arba step-by-step žemiau.
-
-1. Sukurti GitHub repozitoriją.
-
-Instrukcijas, kaip susikurti GitHub repozitoriją rasite - https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
-
-2. Pakeitimus daryti atskiroje šakoje (pvz. dev), kad būtų galima sukurti Pull Request.
-
-Kaip galima sukurti Pull Request galite sužinoti čia - https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
-
-Naują šaką galima susikurti įvykdžius `git checkout -b dev` komandą terminale.
-
-3. Kuriant sistemą pakeitimus nuolatos saugoti su pakeitimus su prasmingomis "commit" žinutėmis.
-
-4. Pabaigus projektą patikrinti ar visi pakeitimai yra nusiųsti į GitHub, sukurti Pull Request per GitHub puslapį į pagrindinę šaką (`main` arba `master`) ir pateikti nuorodą šiame "assignment".
-
-Jeigu to padaryti nepavyks galite tiesiog įkelti archyvuotus failus.
-
-Sėkmės!
+1. Clone this repository to your local machine.
+2. Navigate to the `client` directory and run `npm install` to install front-end dependencies.
+3. Similarly, navigate to the `server` directory and run `npm install` for back-end dependencies.
+4. Set up your MySQL connection in the server code.
+5. Run `npm start` in both the `client` and `server` directories to start the application.
